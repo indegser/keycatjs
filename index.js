@@ -1,5 +1,3 @@
-let popup;
-
 const PKB_USER_KEY = 'pkb_user'
 
 let popup;
