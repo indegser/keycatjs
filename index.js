@@ -35,8 +35,8 @@ const pkb = () => {
       const id = performance.now().toString().replace('.', '-');
       const url = new URL(baseUri + pathname);
       url.searchParams.append('id', id);
-
-      popup = window.open(url.href, 'peekaboo', 'height=800,width=640');
+      // TODO. Open 타입을 유저가 정할 수 있게끔 하자. 팝업이나 새 창.
+      popup = window.open(url.href, 'peekaboo');
   
       if (popup) {
         popup.focus();
