@@ -1,0 +1,24 @@
+{
+  "name": "pkbjs",
+  "version": "0.0.1",
+  "description": "web wallet script",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npm publish --access=public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indegser/pkbjs.git"
+  },
+  "keywords": [
+    "wallet",
+    "blockchain"
+  ],
+  "author": "hanjaekwon (indegser@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/indegser/pkbjs/issues"
+  },
+  "homepage": "https://github.com/indegser/pkbjs#readme"
+}
