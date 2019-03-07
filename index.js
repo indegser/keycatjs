@@ -2,7 +2,7 @@ const PKB_USER_KEY = 'pkb_user'
 
 let popup;
 
-const baseUri = 'http://localhost:8080';
+const baseUri = 'http://172.16.100.28:8080';
 
 const promises = [];
 
@@ -36,7 +36,7 @@ const pkb = () => {
       const url = new URL(baseUri + pathname);
       url.searchParams.append('id', id);
       // TODO. Open 타입을 유저가 정할 수 있게끔 하자. 팝업이나 새 창.
-      popup = window.open(url.href, 'peekaboo');
+      popup = window.open(url.href, 'peekaboo', 'height=800,width=640');
   
       if (popup) {
         popup.focus();
@@ -60,6 +60,9 @@ const pkb = () => {
     signout: () => {
 
     },
+    // useNetwork: (name, ...nodes) => {
+
+    // },
     transaction: (tx) => {
       const identifier = localStorage.getItem(PKB_USER_KEY);
       return openWindow(`/transaction?identifier=${identifier}&payload=${JSON.stringify(tx)}`);
