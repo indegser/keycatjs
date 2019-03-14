@@ -2,10 +2,10 @@
   "name": "pkbjs",
   "version": "0.0.1",
   "description": "web wallet script",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "deploy": "npm publish --access=public",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc -p ."
   },
   "repository": {
     "type": "git",
