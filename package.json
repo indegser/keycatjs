@@ -4,7 +4,7 @@
   "description": "web wallet script",
   "main": "dist/index.js",
   "scripts": {
-    "publish": "git push origin --tags&npm publish --access=public",
+    "deploy": "git push origin --tags & npm publish --access=public",
     "build": "tsc -p ."
   },
   "repository": {
