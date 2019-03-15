@@ -13,13 +13,13 @@ class Peekaboo {
     }
 
     return new Promise((res, rej) => {
-      const channel = new MessageChannel();
-      channel.port1.onmessage = (e) => this.respond(e, channel, res, rej);
       this.popup = window.open(this.BASE_URI + pathname, 'peekaboo', 'height=800,width=640');
 
       window.onmessage = (e) => {
         const { type } = e.data;
         if (type === 'ready') {
+          const channel = new MessageChannel();
+          channel.port1.onmessage = (e) => this.respond(e, res, rej);
           this.popup.postMessage({
             type: 'config',
             payload: this.config,
@@ -29,13 +29,18 @@ class Peekaboo {
     });
   }
 
-  private respond = (e: MessageEvent, channel: MessageChannel, res, rej) => {
+  private respond = (e: MessageEvent, res, rej) => {
     const { type, payload } = e.data;
     if (type === 'closed') {
       rej(type);
     } else {
+      const { data, error } = payload;
       this.popup && this.popup.close();
-      res(payload);
+      if (error) {
+        rej(error);
+      } else {
+        res(data);
+      }
     }
   }
 
