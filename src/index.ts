@@ -14,6 +14,15 @@ class Peekaboo {
 
     return new Promise((res, rej) => {
       this.popup = window.open(this.BASE_URI + pathname, 'peekaboo', 'height=800,width=640');
+      const check = () => {
+        if (this.popup.closed) {
+          rej('closed');
+          return;
+        }
+        requestAnimationFrame(check);
+      }
+
+      check();
 
       window.onmessage = (e) => {
         const { type } = e.data;
