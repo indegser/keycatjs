@@ -1,7 +1,7 @@
 class Peekaboo {
   private popup: Window;
   private config;
-  private BASE_URI = 'https://peekaboo.eosdaq.com';
+  private BASE_URI = `${location.protocol}//peekaboo.eosdaq.com`;
 
   constructor(config) {
     this.config = config;
