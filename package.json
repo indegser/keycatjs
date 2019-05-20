@@ -1,6 +1,6 @@
 {
   "name": "pkbjs",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "web wallet script",
   "main": "dist/index.js",
   "scripts": {
