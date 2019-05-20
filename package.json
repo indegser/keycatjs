@@ -23,5 +23,8 @@
   "homepage": "https://github.com/indegser/pkbjs#readme",
   "devDependencies": {
     "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "query-string": "^6.5.0"
   }
 }

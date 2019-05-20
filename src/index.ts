@@ -1,55 +1,67 @@
+import * as qs from 'query-string'
+
+class Deferred {
+  resolve = null
+  reject = null
+  promise = new Promise((res, rej) => {
+    this.resolve = res
+    this.reject = rej
+  })
+}
+
+interface PeekabooConfig {
+  network: 'jungle'|'main',
+}
+
 class Peekaboo {
   private popup: Window;
-  private config;
-  private BASE_URI = `${location.protocol}//peekaboo.eosdaq.com`;
+  private config: PeekabooConfig;
+  private iframeId = 'peekaboo'
+  private iframeOrigin = `https://eos-peekaboo.eosdaq.com`;
 
-  constructor(config) {
+  constructor(config: PeekabooConfig) {
     this.config = config;
   }
 
-  private open = (pathname) => {
-    if (this.popup) {
-      this.popup.close();
-    }
-
-    return new Promise((res, rej) => {
-      this.popup = window.open(this.BASE_URI + pathname, 'peekaboo', 'height=800,width=640');
-      const check = () => {
-        if (this.popup.closed) {
-          rej('closed');
-          return;
-        }
-        requestAnimationFrame(check);
-      }
-
-      check();
-
-      window.onmessage = (e) => {
-        const { type } = e.data;
-        if (type === 'ready') {
-          const channel = new MessageChannel();
-          channel.port1.onmessage = (e) => this.respond(e, res, rej);
-          this.popup.postMessage({
-            type: 'config',
-            payload: this.config,
-          }, '*', [channel.port2]);
-        }
-      }
-    });
+  private buildIframeSrc = (path, params = {}) => {
+    const client = location.origin
+    const search = qs.stringify({ ...params, client })
+    return this.iframeOrigin + client + path + `?${search}`
   }
 
-  private respond = (e: MessageEvent, res, rej) => {
-    const { type, payload } = e.data;
+  private open = (src) => {
+    const deferred = new Deferred()
+    this.renderIframe(src)
+
+    window.onmessage = ({ data, origin }) => {
+      if (origin !== this.iframeOrigin) return
+      this.respond(data, deferred)
+    }
+
+    return deferred.promise
+  }
+
+  private renderIframe = (src) => {
+    const prevIframe = document.getElementById(this.iframeId)
+    if (prevIframe) {
+      document.removeChild(prevIframe)
+    }
+
+    const iframe = document.createElement('iframe')
+    iframe.id = this.iframeId
+    iframe.src = src
+    document.body.appendChild(iframe)
+  }
+
+  private respond = (data: any, promise: Deferred) => {
+    const { type, payload } = data
+  
     if (type === 'closed') {
-      rej(type);
+      promise.reject(type);
     } else {
       const { data, error } = payload;
-      this.popup && this.popup.close();
-      if (error) {
-        rej(error);
-      } else {
-        res(data);
-      }
+      if (error) promise.reject(error);
+      if (data) promise.resolve(data);
     }
   }
 
@@ -57,9 +69,10 @@ class Peekaboo {
     return this.open('/signin');
   }
 
-  transaction = (username, tx) => {
-    const pathname = `/transaction?username=${username}&payload=${JSON.stringify(tx)}`;
-    return this.open(pathname);
+  transact = (account, tx) => {
+    const p = encodeURIComponent(btoa(JSON.stringify(tx)))
+    const src = this.buildIframeSrc('/transact', { p, account })
+    return this.open(src);
   }
 }
 
