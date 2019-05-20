@@ -16,6 +16,7 @@ interface PeekabooConfig {
 class Peekaboo {
   private config: PeekabooConfig;
   private iframeId = 'peekaboo'
+  // private iframeOrigin = `http://localhost:3000`;
   private iframeOrigin = `https://eos-peekaboo.netlify.com`;
 
   constructor(config: PeekabooConfig) {
@@ -70,15 +71,14 @@ class Peekaboo {
   private respond = (data: any, promise: Deferred) => {
     const { type, payload } = data
   
-    if (type === 'closed') {
-      promise.reject(type);
+    if (type === 'close') {
+      promise.reject('CLOSED');
     } else {
       const { data, error } = payload;
       if (error) promise.reject(error);
       if (data) promise.resolve(data);
-
-      this.closeIframe()
     }
+    this.closeIframe()
   }
 
   signin = () => {
