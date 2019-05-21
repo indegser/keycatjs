@@ -16,25 +16,26 @@ interface PeekabooConfig {
 class Peekaboo {
   private config: PeekabooConfig;
   private iframeId = 'peekaboo'
-  // private iframeOrigin = `http://localhost:3000`;
-  private iframeOrigin = `https://eos-peekaboo.netlify.com`;
+  private popup: Window
+  private origin = `http://localhost:3000`;
+  // private iframeOrigin = `https://eos-peekaboo.netlify.com`;
 
   constructor(config: PeekabooConfig) {
     this.config = config;
   }
 
-  private buildIframeSrc = (path, params = {}) => {
+  private buildSrc = (path, params = {}) => {
     const client = location.origin
     const search = qs.stringify({ ...params, client })
-    return this.iframeOrigin + path + `?${search}`
+    return this.origin + path + `?${search}`
   }
 
   private open = (src) => {
     const deferred = new Deferred()
-    this.renderIframe(src)
-
+    this.openPopup(src)
+  
     window.onmessage = ({ data, origin }) => {
-      if (origin !== this.iframeOrigin) return
+      if (origin !== this.origin) return
 
       const { __peekaboo } = data
       if (!__peekaboo) return
@@ -51,9 +52,20 @@ class Peekaboo {
     }
   }
 
+  private openPopup = (src) => {
+    if (this.popup) {
+      this.popup.close()
+    }
+
+    this.popup = window.open(
+      src,
+      'Peekaboo',
+      'height=480,width=400'
+    )
+  }
+
   private renderIframe = (src) => {
     this.closeIframe()
-
     const iframe = document.createElement('iframe')
     iframe.id = this.iframeId
     iframe.src = src
@@ -65,6 +77,7 @@ class Peekaboo {
     iframe.style.height = '267px'
     iframe.style.position = 'fixed'
     iframe.style.border = 'none'
+    iframe.style.maxWidth = '100vw'
     document.body.appendChild(iframe)
   }
 
@@ -78,16 +91,17 @@ class Peekaboo {
       if (error) promise.reject(error);
       if (data) promise.resolve(data);
     }
-    this.closeIframe()
+
+    this.popup.close()
   }
 
   signin = () => {
-    return this.open(this.buildIframeSrc(''));
+    return this.open(this.buildSrc(''));
   }
 
   transact = (account, tx) => {
     const p = encodeURIComponent(btoa(JSON.stringify(tx)))
-    const src = this.buildIframeSrc('/transact', { p, account })
+    const src = this.buildSrc('/transact', { p, account })
     return this.open(src);
   }
 }
