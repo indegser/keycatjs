@@ -17,16 +17,18 @@ class Peekaboo {
   private config: PeekabooConfig;
   private iframeId = 'peekaboo'
   private popup: Window
-  // private origin = `http://localhost:3000`;
-  private origin = `https://eos-peekaboo.netlify.com`;
+  private origin = `http://172.16.100.28:3000`;
+  // private origin = `https://eos-peekaboo.netlify.com`;
 
   constructor(config: PeekabooConfig) {
-    this.config = config;
+    this.config = config || {
+      network: 'jungle',
+    };
   }
 
   private buildSrc = (path, params = {}) => {
     const client = location.origin
-    const search = qs.stringify({ ...params, client })
+    const search = qs.stringify({ ...params, ...this.config, client })
     return this.origin + path + `?${search}`
   }
 
@@ -93,6 +95,7 @@ class Peekaboo {
     }
 
     this.popup.close()
+    // this.closeIframe()
   }
 
   signin = () => {
