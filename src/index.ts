@@ -17,8 +17,8 @@ class Peekaboo {
   private config: PeekabooConfig;
   private iframeId = 'peekaboo'
   private popup: Window
-  private origin = `http://172.16.100.28:3000`;
-  // private origin = `https://eos-peekaboo.netlify.com`;
+  // private origin = `http://172.16.100.28:3000`;
+  private origin = `https://eos-peekaboo.netlify.com`;
 
   constructor(config: PeekabooConfig) {
     this.config = config || {
