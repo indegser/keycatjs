@@ -22,7 +22,7 @@ class Peekaboo {
   private config: KeycatConfig;
   private popup: Window
   // private origin = `http://172.16.100.28:3000`;
-  private origin = `https://eos-peekaboo.netlify.com`;
+  private origin = `https://keycat.netlify.com`;
 
   constructor(config: KeycatConfig) {
     this.config = config || {
