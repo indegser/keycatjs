@@ -1,7 +1,7 @@
 {
-  "name": "pkbjs",
-  "version": "1.3.1",
-  "description": "web wallet script",
+  "name": "keycatjs",
+  "version": "0.1.0",
+  "description": "this compact and efficient client library provides access to Keycat service. See below for a list of supported APIs.",
   "main": "dist/index.js",
   "scripts": {
     "deploy": "npm run build & git push origin --tags & npm publish --access=public",
@@ -9,18 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/indegser/pkbjs.git"
+    "url": "git+https://github.com/EOSDAQ/keycatjs.git"
   },
   "keywords": [
     "wallet",
-    "blockchain"
+    "blockchain",
+    "eos",
+    "ethereum"
   ],
   "author": "hanjaekwon (indegser@gmail.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/indegser/pkbjs/issues"
+    "url": "https://github.com/EOSDAQ/keycatjs/issues"
   },
-  "homepage": "https://github.com/indegser/pkbjs#readme",
+  "homepage": "https://github.com/EOSDAQ/keycatjs#readme",
   "devDependencies": {
     "typescript": "^3.3.3333"
   },

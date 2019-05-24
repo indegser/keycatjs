@@ -1,26 +1,30 @@
 import * as qs from 'query-string'
 
-class Deferred {
+class Deferred<T> {
   resolve = null
   reject = null
-  promise = new Promise((res, rej) => {
+  promise = new Promise<T>((res, rej) => {
     this.resolve = res
     this.reject = rej
   })
 }
 
-interface PeekabooConfig {
+interface KeycatConfig {
   network: 'jungle'|'main',
 }
 
+interface ISigninResult {
+  account: string,
+}
+
+
 class Peekaboo {
-  private config: PeekabooConfig;
-  private iframeId = 'peekaboo'
+  private config: KeycatConfig;
   private popup: Window
   // private origin = `http://172.16.100.28:3000`;
   private origin = `https://eos-peekaboo.netlify.com`;
 
-  constructor(config: PeekabooConfig) {
+  constructor(config: KeycatConfig) {
     this.config = config || {
       network: 'jungle',
     };
@@ -32,8 +36,8 @@ class Peekaboo {
     return this.origin + path + `?${search}`
   }
 
-  private open = (src) => {
-    const deferred = new Deferred()
+  private open = <T>(src) => {
+    const deferred = new Deferred<T>()
     this.openPopup(src)
   
     window.onmessage = ({ data, origin }) => {
@@ -47,13 +51,6 @@ class Peekaboo {
     return deferred.promise
   }
 
-  private closeIframe = () => {
-    const prevIframe = document.getElementById(this.iframeId)
-    if (prevIframe) {
-      document.body.removeChild(prevIframe)
-    }
-  }
-
   private openPopup = (src) => {
     if (this.popup) {
       this.popup.close()
@@ -61,29 +58,12 @@ class Peekaboo {
 
     this.popup = window.open(
       src,
-      'Peekaboo',
+      'Keycat',
       'height=480,width=400'
     )
   }
 
-  private renderIframe = (src) => {
-    this.closeIframe()
-    const iframe = document.createElement('iframe')
-    iframe.id = this.iframeId
-    iframe.src = src
-
-    iframe.style.zIndex = '9999'
-    iframe.style.top = '0'
-    iframe.style.right = '0'
-    iframe.style.width = '400px'
-    iframe.style.height = '267px'
-    iframe.style.position = 'fixed'
-    iframe.style.border = 'none'
-    iframe.style.maxWidth = '100vw'
-    document.body.appendChild(iframe)
-  }
-
-  private respond = (data: any, promise: Deferred) => {
+  private respond = (data: any, promise: Deferred<any>) => {
     const { type, payload } = data
   
     if (type === 'close') {
@@ -99,13 +79,13 @@ class Peekaboo {
   }
 
   signin = () => {
-    return this.open(this.buildSrc(''));
+    return this.open<ISigninResult>(this.buildSrc(''));
   }
 
   transact = (account, tx) => {
     const p = encodeURIComponent(btoa(JSON.stringify(tx)))
     const src = this.buildSrc('/transact', { p, account })
-    return this.open(src);
+    return this.open<any>(src);
   }
 }
 
