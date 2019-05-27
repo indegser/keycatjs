@@ -10,48 +10,46 @@ class Deferred<T> {
 }
 
 interface KeycatConfig {
-  network: 'jungle'|'main',
+  network?: 'jungle'|'main',
+  keycatOrigin?: string,
+  nodes?: string[],
 }
 
 interface ISigninResult {
   account: string,
 }
 
-
-class Peekaboo {
+class Keycat {
   private config: KeycatConfig;
   private popup: Window
-  // private origin = `http://172.16.100.28:3000`;
-  private origin = `https://keycat.netlify.com`;
+  private defaultOrigin = `https://www.keycat.co`;
 
   constructor(config: KeycatConfig) {
-    this.config = config || {
-      network: 'jungle',
-    };
+    this.config = config
   }
 
   private buildSrc = (path, params = {}) => {
     const client = location.origin
-    const search = qs.stringify({ ...params, ...this.config, client })
-    return this.origin + path + `?${search}`
+    const { keycatOrigin, ...config } = this.config
+    const origin = keycatOrigin || this.defaultOrigin
+    const search = qs.stringify({ ...params, ...config, client })
+    return origin + path + `?${search}`
   }
 
   private open = <T>(src) => {
     const deferred = new Deferred<T>()
-    this.openPopup(src)
-  
-    window.onmessage = ({ data, origin }) => {
-      if (origin !== this.origin) return
+    this.openPopup(src, deferred)
 
-      const { __peekaboo } = data
-      if (!__peekaboo) return
+    window.onmessage = ({ data }) => {
+      const { ____keycat } = data
+      if (!____keycat) return
       this.respond(data, deferred)
     }
 
     return deferred.promise
   }
 
-  private openPopup = (src) => {
+  private openPopup = (src, deferred) => {
     if (this.popup) {
       this.popup.close()
     }
@@ -61,11 +59,17 @@ class Peekaboo {
       'Keycat',
       'height=480,width=400'
     )
+
+    const timer = setInterval(() => {
+      if (this.popup.closed) {
+        clearInterval(timer)
+        deferred.reject('CLOSED')
+      }
+    }, 500)
   }
 
   private respond = (data: any, promise: Deferred<any>) => {
     const { type, payload } = data
-  
     if (type === 'close') {
       promise.reject('CLOSED');
     } else {
@@ -89,4 +93,4 @@ class Peekaboo {
   }
 }
 
-export default Peekaboo;
+export default Keycat;
