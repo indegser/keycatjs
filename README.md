@@ -13,6 +13,7 @@ import Keycat from 'keycat'
 
 const config = {
   network: 'jungle', // or 'main'
+  keycatOrigin: 'https://www.keycat.co' // optional.
 }
 
 const keycat = new Keycat(config)
