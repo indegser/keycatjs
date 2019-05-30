@@ -9,10 +9,19 @@ class Deferred<T> {
   })
 }
 
-interface KeycatConfig {
-  network?: 'jungle'|'main',
-  keycatOrigin?: string,
+interface IKlaytn {
+
+}
+
+interface IBlockchain {
+  name: string,
   nodes?: string[],
+  rpcURL?: string,
+}
+
+interface KeycatConfig {
+  blockchain?: string|IBlockchain,
+  keycatOrigin?: string,
 }
 
 interface ISigninResult {
@@ -30,9 +39,21 @@ class Keycat {
 
   private buildSrc = (path, params = {}) => {
     const client = location.origin
-    const { keycatOrigin, ...config } = this.config
-    const origin = keycatOrigin || this.defaultOrigin
-    const search = qs.stringify({ ...params, ...config, client })
+    const { keycatOrigin, blockchain, ...config } = this.config
+    let replacedOrigin = this.defaultOrigin
+    if (typeof blockchain === 'string') {
+      replacedOrigin = replacedOrigin.replace('www', blockchain)
+    } else {
+      replacedOrigin = replacedOrigin.replace('www', blockchain.name)
+    }
+
+    const origin = keycatOrigin || replacedOrigin
+    const search = qs.stringify({
+      ...params,
+      ...config,
+      blockchain: JSON.stringify(blockchain),
+      client
+    })
     return origin + path + `?${search}`
   }
 
@@ -57,7 +78,7 @@ class Keycat {
     this.popup = window.open(
       src,
       'Keycat',
-      'height=480,width=400'
+      'height=640,width=420'
     )
 
     const timer = setInterval(() => {
