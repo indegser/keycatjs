@@ -31,7 +31,7 @@ interface ISigninResult {
 class Keycat {
   private config: KeycatConfig;
   private popup: Window
-  private defaultOrigin = `https://www.keycat.co`;
+  private defaultOrigin = `https://{{NAME}}.keycat.co`;
 
   constructor(config: KeycatConfig) {
     this.config = config
@@ -42,9 +42,9 @@ class Keycat {
     const { keycatOrigin, blockchain, ...config } = this.config
     let replacedOrigin = this.defaultOrigin
     if (typeof blockchain === 'string') {
-      replacedOrigin = replacedOrigin.replace('www', blockchain)
+      replacedOrigin = replacedOrigin.replace('{{NAME}}', blockchain)
     } else {
-      replacedOrigin = replacedOrigin.replace('www', blockchain.name)
+      replacedOrigin = replacedOrigin.replace('{{NAME}}', blockchain.name)
     }
 
     const origin = keycatOrigin || replacedOrigin
@@ -104,7 +104,7 @@ class Keycat {
   }
 
   signin = () => {
-    return this.open<ISigninResult>(this.buildSrc(''));
+    return this.open<ISigninResult>(this.buildSrc('/signin'));
   }
 
   transact = (account, tx) => {
