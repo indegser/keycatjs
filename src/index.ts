@@ -35,7 +35,7 @@ class Keycat {
     this.config = config;
   }
 
-  private buildSrc = (path, params = {}) => {
+  private buildSrc = (path: string, params = {}) => {
     const client = location.origin;
     const { keycatOrigin, blockchain, ...config } = this.config;
     let replacedOrigin = this.defaultOrigin;

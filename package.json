@@ -4,7 +4,11 @@
   "description": "this compact and efficient client library provides access to Keycat service. See below for a list of supported APIs.",
   "main": "dist/index.js",
   "scripts": {
-    "deploy": "npm run build & git push origin --tags & npm publish --access=public",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --passWithNoTests --config jestconfig.json",
