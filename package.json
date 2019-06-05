@@ -5,12 +5,18 @@
   "main": "dist/index.js",
   "scripts": {
     "deploy": "npm run build & git push origin --tags & npm publish --access=public",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --passWithNoTests --config jestconfig.json",
     "build": "tsc -p ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EOSDAQ/keycatjs.git"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "keywords": [
     "wallet",
     "blockchain",
@@ -23,10 +29,16 @@
     "url": "https://github.com/EOSDAQ/keycatjs/issues"
   },
   "homepage": "https://github.com/EOSDAQ/keycatjs#readme",
-  "devDependencies": {
-    "typescript": "^3.3.3333"
-  },
   "dependencies": {
     "query-string": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.13",
+    "jest": "^24.8.0",
+    "prettier": "^1.17.1",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.17.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.3.3333"
   }
 }

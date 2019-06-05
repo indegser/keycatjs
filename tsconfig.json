@@ -5,14 +5,16 @@
       "es2015",
       "dom"
     ],
+    "target": "es5",
+    "module": "commonjs",
     "declaration": true,
-    "target": "es5"
+    "strict": true
   },
   "exclude": [
     "node_modules",
-    "dist"
+    "**/__test__/*"
   ],
   "include": [
-    "src/**/*"
+    "src"
   ]
 }
