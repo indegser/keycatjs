@@ -11,9 +11,3 @@ Installation
 npm install keycatjs
 yarn add keycatjs
 ```
-
-Usage
-=====
-
-[API Documentation](https://keycatdev.gitbook.io/keycatjs/)
-

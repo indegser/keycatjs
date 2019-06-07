@@ -12,7 +12,7 @@
 
 ⊕ **new Keycat**(config: *[KeycatConfig](../interfaces/_keycat_interfaces_.keycatconfig.md)*): [Keycat](_keycat_.keycat.md)
 
-*Defined in [Keycat.ts:12](https://github.com/EOSDAQ/keycatjs/blob/3140cad/src/Keycat.ts#L12)*
+*Defined in [Keycat.ts:20](https://github.com/EOSDAQ/keycatjs/blob/ba95fdc/src/Keycat.ts#L20)*
 
 **Parameters:**
 
@@ -32,7 +32,7 @@ ___
 
 **● keycatOrigin**: *`string`*
 
-*Defined in [Keycat.ts:12](https://github.com/EOSDAQ/keycatjs/blob/3140cad/src/Keycat.ts#L12)*
+*Defined in [Keycat.ts:20](https://github.com/EOSDAQ/keycatjs/blob/ba95fdc/src/Keycat.ts#L20)*
 
 ___
 
@@ -42,11 +42,11 @@ ___
 
 ##  signin
 
-▸ **signin**(): `Promise`<[ISigninResult](../interfaces/_keycat_.isigninresult.md)>
+▸ **signin**(): `Promise`<`any`>
 
-*Defined in [Keycat.ts:86](https://github.com/EOSDAQ/keycatjs/blob/3140cad/src/Keycat.ts#L86)*
+*Defined in [Keycat.ts:94](https://github.com/EOSDAQ/keycatjs/blob/ba95fdc/src/Keycat.ts#L94)*
 
-**Returns:** `Promise`<[ISigninResult](../interfaces/_keycat_.isigninresult.md)>
+**Returns:** `Promise`<`any`>
 
 ___
 <a id="transact"></a>
@@ -55,7 +55,7 @@ ___
 
 ▸ **transact**(account: *`any`*, tx: *`any`*): `Promise`<`any`>
 
-*Defined in [Keycat.ts:90](https://github.com/EOSDAQ/keycatjs/blob/3140cad/src/Keycat.ts#L90)*
+*Defined in [Keycat.ts:98](https://github.com/EOSDAQ/keycatjs/blob/ba95fdc/src/Keycat.ts#L98)*
 
 **Parameters:**
 

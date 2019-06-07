@@ -12,7 +12,7 @@
 
 **● __keycatOrigin**: *`string`*
 
-*Defined in keycat-interfaces.ts:28*
+*Defined in [keycat-interfaces.ts:28](https://github.com/EOSDAQ/keycatjs/blob/ba95fdc/src/keycat-interfaces.ts#L28)*
 
 Use this option if your are running [Keycat](https://github.com/EOSDAQ/keycat) on local machine.
 
@@ -34,7 +34,7 @@ ___
 
 **● blockchain**: *[EOSConfig](_keycat_interfaces_.eosconfig.md) \| [KlaytnConfig](_keycat_interfaces_.klaytnconfig.md)*
 
-*Defined in keycat-interfaces.ts:78*
+*Defined in [keycat-interfaces.ts:78](https://github.com/EOSDAQ/keycatjs/blob/ba95fdc/src/keycat-interfaces.ts#L78)*
 
 Blockchain configuration for Keycat. Each blockchain has different **optional** configuration specified by their providers.
 
