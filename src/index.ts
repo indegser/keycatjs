@@ -9,17 +9,26 @@ class Deferred<T> {
   });
 }
 
-interface IKlaytn {}
-
 interface IBlockchain {
   name: string;
-  nodes?: string[];
+  network: string;
+}
+
+interface Klaytn {
+  name: 'klaytn';
+  network: 'baobab';
   rpcURL?: string;
 }
 
+interface EOS extends IBlockchain {
+  name: 'eos';
+  network: 'main'|'jungle'|'custom';
+  nodes?: string[];
+}
+
 interface KeycatConfig {
-  blockchain?: string | IBlockchain;
-  keycatOrigin?: string;
+  blockchain: EOS|Klaytn;
+  __keycatOrigin?: string;
 }
 
 interface ISigninResult {
@@ -29,30 +38,36 @@ interface ISigninResult {
 class Keycat {
   private config: KeycatConfig;
   private popup: Window;
-  private defaultOrigin = `https://{{NAME}}.keycat.co`;
+  public keycatOrigin: string;
 
   constructor(config: KeycatConfig) {
     this.config = config;
+    this.keycatOrigin = this.getKeycatOrigin()
+  }
+
+  private getKeycatOrigin = () => {
+    const defaultOrigin = `https://{{NAME}}.keycat.co`;
+    const { blockchain: { name, network }, __keycatOrigin } = this.config;
+
+    if (__keycatOrigin) {
+      return __keycatOrigin
+    }
+
+    const subdomain = [name, network].join('-').replace('-main', '')
+    return defaultOrigin.replace('{{NAME}}', subdomain)
   }
 
   private buildSrc = (path: string, params = {}) => {
     const client = location.origin;
-    const { keycatOrigin, blockchain, ...config } = this.config;
-    let replacedOrigin = this.defaultOrigin;
-    if (typeof blockchain === 'string') {
-      replacedOrigin = replacedOrigin.replace('{{NAME}}', blockchain);
-    } else {
-      replacedOrigin = replacedOrigin.replace('{{NAME}}', blockchain.name);
-    }
+    const { blockchain, ...config } = this.config;
 
-    const origin = keycatOrigin || replacedOrigin;
     const search = qs.stringify({
       ...params,
       ...config,
       blockchain: JSON.stringify(blockchain),
       client,
     });
-    return origin + path + `?${search}`;
+    return this.keycatOrigin + path + `?${search}`;
   };
 
   private open = <T>(src) => {
