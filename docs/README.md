@@ -1,19 +1,17 @@
+# Introduction
 
-keycatjs
-========
+## keycatjs
 
 Javascript API for integration with Keycat. ![npm](https://img.shields.io/npm/dw/keycatjs.svg)
 
-Installation
-============
+## Installation
 
 ```javascript
 npm install keycatjs
 yarn add keycatjs
 ```
 
-Usage
-=====
+## Usage
 
 [API Documentation](https://keycatdev.gitbook.io/keycatjs/)
 

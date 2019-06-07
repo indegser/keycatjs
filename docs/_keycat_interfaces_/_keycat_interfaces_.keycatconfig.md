@@ -1,18 +1,16 @@
+# KeycatConfig
 
-
-# Hierarchy
+## Hierarchy
 
 **KeycatConfig**
 
-# Properties
+## Properties
 
-<a id="__keycatorigin"></a>
+### `<Optional>` \_\_keycatOrigin <a id="__keycatorigin"></a>
 
-## `<Optional>` __keycatOrigin
+**● \_\_keycatOrigin**: _`string`_
 
-**● __keycatOrigin**: *`string`*
-
-*Defined in keycat-interfaces.ts:28*
+_Defined in keycat-interfaces.ts:28_
 
 Use this option if your are running [Keycat](https://github.com/EOSDAQ/keycat) on local machine.
 
@@ -27,14 +25,11 @@ const keycat = new Keycat({
 })
 ```
 
-___
-<a id="blockchain"></a>
+### blockchain <a id="blockchain"></a>
 
-##  blockchain
+**● blockchain**: [_EOSConfig_](_keycat_interfaces_.eosconfig.md) _\|_ [_KlaytnConfig_](_keycat_interfaces_.klaytnconfig.md)
 
-**● blockchain**: *[EOSConfig](_keycat_interfaces_.eosconfig.md) \| [KlaytnConfig](_keycat_interfaces_.klaytnconfig.md)*
-
-*Defined in keycat-interfaces.ts:78*
+_Defined in keycat-interfaces.ts:78_
 
 Blockchain configuration for Keycat. Each blockchain has different **optional** configuration specified by their providers.
 
@@ -77,9 +72,7 @@ new Keycat({
 })
 ```
 
-Each configuration sets keycat url to `${name}-${network}.keycat.co` for keychain to divided according to networks. (for mainnet, it is `${name}.keycat.co`)
+Each configuration sets keycat url to `${name}-${network}.keycat.co` for keychain to divided according to networks. \(for mainnet, it is `${name}.keycat.co`\)
 
 If you provide custom nodes in eos blockchain, even if network is set to 'main' or 'jungle' it will use nodes you provided.
-
-___
 
