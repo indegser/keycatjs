@@ -12,7 +12,7 @@
   },
   "exclude": [
     "node_modules",
-    "**/__test__/*"
+    "**/__tests__/*"
   ],
   "include": [
     "src"

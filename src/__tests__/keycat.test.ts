@@ -1,5 +1,5 @@
 import 'jest'
-import Keycat from '../index'
+import { Keycat } from '../index'
 
 test('Test keycat origin generation', () => {
   const keycat = new Keycat({

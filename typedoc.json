@@ -1,5 +1,12 @@
 {
-  "mode": "file",
+  "name": "API",
+  "mode": "modules",
   "out": "docs",
-  "theme": "markdown"
+  "theme": "markdown",
+  "excludePrivate": true,
+  "excludeExternals": true,
+  "excludeProtected": true,
+  "exclude": "**/*+(test|index|Deferred).ts",
+  "mdEngine": "gitbook",
+  "includeDeclarations": false
 }

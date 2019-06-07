@@ -12,7 +12,7 @@
 
 **● account**: *`string`*
 
-*Defined in [index.ts:35](https://github.com/EOSDAQ/keycatjs/blob/2754518/src/index.ts#L35)*
+*Defined in [Keycat.ts:6](https://github.com/EOSDAQ/keycatjs/blob/3140cad/src/Keycat.ts#L6)*
 
 ___
 

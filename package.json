@@ -13,8 +13,8 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --passWithNoTests --config jestconfig.json",
-    "doc": "typedoc --excludeExternals --exclude \"**/*.test.ts\" --mdEngine gitbook",
-    "build": "tsc -p ."
+    "doc": "typedoc",
+    "build": "rm -rf dist&&tsc -p ."
   },
   "repository": {
     "type": "git",
