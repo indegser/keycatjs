@@ -7,6 +7,7 @@ _*Keychain: Major browsers (Chrome, Safari, Firefox) and OS providers (Apple, Go
 1. **Minimized login process (without Scatter)**
 
   To access an EOS-based DApp through Scatter on web, you need to go through the following steps:
+    
     1. Download Scatter
     2. Import EOS account to Scatter
     3. Activate Scatter
@@ -37,6 +38,6 @@ _*Keychain: Major browsers (Chrome, Safari, Firefox) and OS providers (Apple, Go
 
   Keychain protects your information with end-to-end encryption, which provides the highest level of data security. Your data is protected with a key that's made from information unique to your device, and combined with your device passcode, which only you know. No one else can access or read this data, either in transit or storage.
 
-3. **Is {{APP}} safe?**
+3. **Is Keycat safe?**
 
-  Yes. {{APP}} never and ever save your private key in a database. Everything is saved in Browser's keychain. {{APP}} cannot remove or update your Keychain-synced data. It is protected by browser itself. In other words, it is protected by Google or Apple, Firefox's security system.
+  Yes. Keycat never and ever save your private key in a database. Everything is saved in Browser's keychain. Keycat cannot remove or update your Keychain-synced data. It is protected by browser itself. In other words, it is protected by Google or Apple, Firefox's security system.
