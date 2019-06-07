@@ -18,7 +18,12 @@ _\*Keychain: Major browsers \(Chrome, Safari, Firefox\) and OS providers \(Apple
    4. Visit DApp's website
    5. Login
 
-   However, with Keycat, you can log in with minimized steps: 1. Import EOS account at DApp's website 2. Login
+
+
+   However, with Keycat, you can log in with minimized steps:
+
+   1. Import EOS account at DApp's website
+   2. Login
 
 2. **Top security level**
 
@@ -26,7 +31,7 @@ _\*Keychain: Major browsers \(Chrome, Safari, Firefox\) and OS providers \(Apple
 
 3. **Sync across multiple devices**
 
-   Once saved in the browser, your date is encrypted and synced across all devices through your Google account or iCloud account. For example, after you save data in your web browser on desktop, you will also be able to access through the same browser on your mobile.
+Once saved in the browser, your date is encrypted and synced across all devices through your Google account or iCloud account. For example, after you save data in your web browser on desktop, you will also be able to access through the same browser on your mobile.
 
 ## Frequently asked questions 
 
