@@ -1,5 +1,4 @@
-Getting Started
-============
+# Getting Started
 
 ## installation
 
@@ -33,10 +32,10 @@ async function handleSignin() {
     ...
   }
 }
-
 ```
 
 ### Sign in transaction
+
 ```javascript
 async function handleRequest() {
   // Use account info saved in cookie, localStorage or variable.
@@ -51,5 +50,5 @@ async function handleRequest() {
 
   }
 }
-
 ```
+
