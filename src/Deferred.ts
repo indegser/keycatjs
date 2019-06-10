@@ -1,7 +1,7 @@
 export class Deferred<T> {
-  resolve: any = null;
-  reject: any = null;
-  promise = new Promise<T>((res, rej) => {
+  public resolve: any = null;
+  public reject: any = null;
+  public promise = new Promise<T>((res, rej) => {
     this.resolve = res;
     this.reject = rej;
   });

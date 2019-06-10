@@ -13,20 +13,23 @@ class Keycat {
 
   constructor(config: KeycatConfig) {
     this.config = config;
-    this.keycatOrigin = this.getKeycatOrigin()
+    this.keycatOrigin = this.getKeycatOrigin();
   }
 
   private getKeycatOrigin = () => {
     const defaultOrigin = `https://{{NAME}}.keycat.co`;
-    const { blockchain: { name, network }, __keycatOrigin } = this.config;
+    const {
+      blockchain: { name, network },
+      __keycatOrigin,
+    } = this.config;
 
     if (__keycatOrigin) {
-      return __keycatOrigin
+      return __keycatOrigin;
     }
 
-    const subdomain = [name, network].join('-').replace('-main', '')
-    return defaultOrigin.replace('{{NAME}}', subdomain)
-  }
+    const subdomain = [name, network].join('-').replace('-main', '');
+    return defaultOrigin.replace('{{NAME}}', subdomain);
+  };
 
   private buildSrc = (path: string, params = {}) => {
     const client = location.origin;
