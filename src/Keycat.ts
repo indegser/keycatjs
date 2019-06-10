@@ -30,11 +30,10 @@ class Keycat {
 
   private buildSrc = (path: string, params = {}) => {
     const client = location.origin;
-    const { blockchain, ...config } = this.config;
+    const { blockchain } = this.config;
 
     const search = qs.stringify({
       ...params,
-      ...config,
       blockchain: JSON.stringify(blockchain),
       client,
     });
