@@ -27,7 +27,7 @@ class Keycat {
       return __keycatOrigin;
     }
 
-    const subdomain = [name, network].join('-').replace('-main', '');
+    const subdomain = [name, network].filter(Boolean).join('-').replace('-main', '');
     return defaultOrigin.replace('{{NAME}}', subdomain);
   };
 
