@@ -68,15 +68,11 @@ class Keycat {
     var y = window.top.outerHeight / 2 + window.top.screenY - ( h / 2)
     var x = window.top.outerWidth / 2 + window.top.screenX - ( w / 2)
     const opts = [
-      'toolbar=no',
-      'directories=no',
-      'status=no',
-      'menubar=no',
       `width=${w}`,
       `height=${h}`,
       `top=${y}`,
       `left=${x}`,
-    ].join(', ')
+    ].join(',')
     this.popup = window.open(src, 'Keycat', opts);
 
     const timer = setInterval(() => {
