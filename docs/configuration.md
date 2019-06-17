@@ -6,7 +6,7 @@ description: >-
 
 # Configuration
 
-## Common
+## EOS
 
 ```typescript
 import { Keycat } from 'keycat'
@@ -18,6 +18,15 @@ const eosMainnetKeycat = new Keycat({
     },
 })
 
+const eosJungleKeycat = new Keycat({
+    blockchain: {
+        name: 'eos',
+        network: 'jungle',
+    },
+})
+
+// If you are running your own keycat(by cloning keycat repository)
+// And you have to use your local nodeos for development.
 const customNodesKeycat = new Keycat({
     blockchain: {
         name: 'eos',
@@ -27,31 +36,27 @@ const customNodesKeycat = new Keycat({
             'http://localhost:18888',
         ],
     },
+    __keycatOrigin: 'http://localhost:3030',
 })
+
 ```
 
-**KeycatJS** is designed for flexible usage like setting custom nodes, using non-https endpoints and testing in localhost. 
+**KeycatJS** is designed for flexible usage like setting custom nodes, using non-https endpoints and testing in localhost.
 
 Initializing `Keycat` requires `blockchain` property.
 
 ```typescript
 interface BlockchainConfig {
-    name: 'eos'|'klaytn';
-    network: string;
-    nodes?: string[];
+    name: 'eos';
+    network: 'main'|'jungle'|'custom';
+    nodes?: string[]; // optional in main/jungle network. Keycat will use pre-defined nodes for those networks.
 }
 
 interface KeycatConfig {
     blockchain: BlockchainConfig;
-    __keycatOrigin: string;
+    __keycatOrigin?: string; // optional.
 }
 ```
-
-
-
-## EOS
-
-## Klaytn
 
 
 

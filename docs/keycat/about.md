@@ -6,7 +6,7 @@ description: 'Keycat is a browser-based wallet, supported by the Keychain techno
 
 ## What is it?
 
-{% embed url="https://youtu.be/VInyicUG7Nw" %}
+{% embed url="https://youtu.be/VInyicUG7Nw" caption="" %}
 
 \*\*\*\*
 
@@ -16,11 +16,9 @@ description: 'Keycat is a browser-based wallet, supported by the Keychain techno
 _**Keychain**: Major browsers \(Chrome, Safari, Firefox\) and OS providers \(Apple, Google\) offer a security technology called Keychain. When you try to access a website or email account, you may have seen an pop-up option to save your password in the browser \(usually, the pop-up shows up on the top right corner of the browser.\) Here, the Keychain technology is used for storing your password \(private key\) in the browser._
 {% endhint %}
 
-In developer term, Keycat is serverless. Meaning it does not have a database nor server to save or protect user's private keys. Keycat uses browser's secure storage called "Keychain". 
+In developer term, Keycat is serverless. Meaning it does not have a database nor server to save or protect user's private keys. Keycat uses browser's secure storage called "Keychain".
 
 When you sign in to Gmail or Twitter, you might have noticed small UI saying "I have remembered your passwords on behalf of you, and if you click me, I will auto fill your information".
-
-
 
 ![Safari&apos;s Keychain UI offering you a saved account.](../.gitbook/assets/2019-06-09-8.47.02.png)
 
@@ -38,9 +36,9 @@ The simplest way to describe Keycat is "Website with \[Account/Private key\] fie
 
 Your private key is auto-filled, and used in signing then finish.
 
-![My Saved passwords\(private keys\) from Keycat.](../.gitbook/assets/2019-06-09-9.10.17.png)
+![My Saved passwords\(private keys\) from Keycat.](../.gitbook/assets/2019-06-09-9.10.17%20%281%29.png)
 
-## Frequently asked questions 
+## Frequently asked questions
 
 1. **Can I view and edit my passwords stored in Keychain?**
 
