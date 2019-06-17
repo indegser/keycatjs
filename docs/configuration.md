@@ -18,10 +18,23 @@ const eosMainnetKeycat = new Keycat({
     },
 })
 
-const eosJungleKeycat = new Keycat({
+const eosJunglenetKeycat = new Keycat({
     blockchain: {
         name: 'eos',
         network: 'jungle',
+    },
+})
+
+// If you are running your own Mainnet node,
+// and would like to use if instead of pre-defined nodes.
+// Pass nodes(all node should be using protocol 'https')
+const eosMainnetKeycatWithCustomNodes = new Keycat({
+    blockchain: {
+        name: 'eos',
+        network: 'main',
+        nodes: [
+            'https://some-mainnetnode.com',
+        ],
     },
 })
 
