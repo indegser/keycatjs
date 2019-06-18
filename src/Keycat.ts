@@ -3,7 +3,9 @@ import { KeycatConfig } from './keycat-interfaces';
 import { Deferred } from './Deferred';
 
 interface ISigninResult {
-  account: string;
+  accountName: string;
+  permission: string;
+  publicKey: string;
 }
 
 class Keycat {
@@ -63,16 +65,11 @@ class Keycat {
       this.popup.close();
     }
 
-    const w = 420
-    const h = 720
-    var y = window.top.outerHeight / 2 + window.top.screenY - ( h / 2)
-    var x = window.top.outerWidth / 2 + window.top.screenX - ( w / 2)
-    const opts = [
-      `width=${w}`,
-      `height=${h}`,
-      `top=${y}`,
-      `left=${x}`,
-    ].join(',')
+    const w = 420;
+    const h = 720;
+    var y = window.top.outerHeight / 2 + window.top.screenY - h / 2;
+    var x = window.top.outerWidth / 2 + window.top.screenX - w / 2;
+    const opts = [`width=${w}`, `height=${h}`, `top=${y}`, `left=${x}`].join(',');
     this.popup = window.open(src, 'Keycat', opts);
 
     const timer = setInterval(() => {
@@ -97,9 +94,20 @@ class Keycat {
     // this.closeIframe()
   };
 
+  encode = (data) => {
+    return encodeURIComponent(btoa(JSON.stringify(data)));
+  }
+
   signin = () => {
     return this.open<ISigninResult>(this.buildSrc('/signin'));
   };
+
+  sign = (account, transaction) => {
+    return this.open<any>(this.buildSrc('/sign', {
+      transaction: this.encode(transaction),
+      account,
+    }));
+  }
 
   transact = (account, tx) => {
     const p = encodeURIComponent(btoa(JSON.stringify(tx)));
