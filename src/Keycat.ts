@@ -11,6 +11,7 @@ interface ISigninResult {
 class Keycat {
   private config: KeycatConfig;
   private popup: Window;
+  private account: string;
   public keycatOrigin: string;
 
   constructor(config: KeycatConfig) {
@@ -35,15 +36,17 @@ class Keycat {
     return defaultOrigin.replace('{{NAME}}', subdomain);
   };
 
-  private buildSrc = (path: string, params = {}) => {
+  private buildSrc = (path: string, args = []) => {
     const client = location.origin;
     const { blockchain } = this.config;
 
     const search = qs.stringify({
-      ...params,
       blockchain: JSON.stringify(blockchain),
       client,
+      account: this.account,
+      payload: this.encode(args),
     });
+
     return this.keycatOrigin + path + `?${search}`;
   };
 
@@ -98,20 +101,25 @@ class Keycat {
     return encodeURIComponent(btoa(JSON.stringify(data)));
   }
 
+  user = (account: string) => {
+    this.account = account
+    return this
+  }
+
   signin = () => {
     return this.open<ISigninResult>(this.buildSrc('/signin'));
   };
 
-  sign = (account, transaction) => {
-    return this.open<any>(this.buildSrc('/sign', {
-      transaction: this.encode(transaction),
-      account,
-    }));
+  signTransaction = (...args) => {
+    return this.open<any>(this.buildSrc('/sign-transaction', args));
   }
 
-  transact = (account, tx) => {
-    const p = encodeURIComponent(btoa(JSON.stringify(tx)));
-    const src = this.buildSrc('/transact', { p, account });
+  signArbitraryData = (data) => {
+    return this.open<any>(this.buildSrc('/sign-arbitrary-data', data)) 
+  }
+
+  transact = (...args) => {
+    const src = this.buildSrc('/transact', args);
     return this.open<any>(src);
   };
 }
