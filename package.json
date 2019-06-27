@@ -5,9 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublish": "npm run build",
-    "prepublishOnly": "npm test",
-    "preversion": "npm run format && npm run lint",
+    "preversion": "npm test && npm run format && npm run lint && git add . && git commit -m \"lint\"",
     "postversion": "git push && git push --tags && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",

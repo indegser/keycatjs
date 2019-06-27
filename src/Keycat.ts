@@ -97,37 +97,37 @@ class Keycat {
     // this.closeIframe()
   };
 
-  private guardAccountAction = (methodName) => {
+  private guardAccountAction = methodName => {
     if (!this.currentAccount) {
-      throw new Error(`You must chain key like this. keycat.account('...').[${methodName}](...) `)
+      throw new Error(`You must chain key like this. keycat.account('...').[${methodName}](...) `);
     }
-  }
+  };
 
-  encode = (data) => {
+  encode = data => {
     return encodeURIComponent(btoa(JSON.stringify(data)));
-  }
+  };
 
   account = (account: string) => {
-    this.currentAccount = account
-    return this
-  }
+    this.currentAccount = account;
+    return this;
+  };
 
   signin = () => {
     return this.open<ISigninResult>(this.buildSrc('/signin'));
   };
 
   signTransaction = (...args) => {
-    this.guardAccountAction('signTransaction')
+    this.guardAccountAction('signTransaction');
     return this.open<any>(this.buildSrc('/sign-transaction', args));
-  }
+  };
 
-  signArbitraryData = (data) => {
-    this.guardAccountAction('signArbitraryData')
-    return this.open<any>(this.buildSrc('/sign-arbitrary-data', data)) 
-  }
+  signArbitraryData = data => {
+    this.guardAccountAction('signArbitraryData');
+    return this.open<any>(this.buildSrc('/sign-arbitrary-data', data));
+  };
 
   transact = (...args) => {
-    this.guardAccountAction('transact')
+    this.guardAccountAction('transact');
     const src = this.buildSrc('/transact', args);
     return this.open<any>(src);
   };
