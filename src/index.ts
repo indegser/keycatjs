@@ -1,2 +1,2 @@
-import Keycat from './Keycat';
-export { Keycat };
+import Keycat from './Keycat'
+export { Keycat }

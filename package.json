@@ -8,7 +8,7 @@
     "preversion": "npm test && npm run format && npm run lint && git add . && git commit -m \"lint\"",
     "postversion": "git push && git push --tags && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "tslint -p .",
     "test": "jest --passWithNoTests --config jestconfig.json",
     "build": "tsc -p ."
   },
@@ -37,10 +37,13 @@
   "devDependencies": {
     "@types/jest": "^24.0.13",
     "jest": "^24.8.0",
-    "prettier": "^1.17.1",
+    "prettier": "^1.9",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.17.0",
+    "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-plugin-prettier": "^2.0.1",
+    "tslint-react": "^4.0.0",
     "typescript": "^3.3.3333"
   }
 }

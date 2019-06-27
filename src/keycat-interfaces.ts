@@ -1,17 +1,17 @@
-export interface EOSConfig {
-  name: 'eos';
-  nodes?: string[];
-  network: 'main' | 'jungle' | 'custom';
+export interface IEOSConfig {
+  name: 'eos'
+  nodes?: string[]
+  network: 'main' | 'jungle' | 'custom'
 }
 
-export interface KlaytnConfig {
-  name: 'klaytn';
+export interface IKlaytnConfig {
+  name: 'klaytn'
   /** Klaytn currently supports only baobab. There's no main */
-  network: 'baobab';
-  rpcURL?: string;
+  network: 'baobab'
+  rpcURL?: string
 }
 
-export interface KeycatConfig {
+export interface IKeycatConfig {
   /**
    * Use this option if your are running [Keycat](https://github.com/EOSDAQ/keycat) on local machine.
    * ```javascript
@@ -25,7 +25,7 @@ export interface KeycatConfig {
    * })
    * ```
    */
-  __keycatOrigin?: string;
+  __keycatOrigin?: string
 
   /**
    * Blockchain configuration for Keycat.
@@ -75,5 +75,5 @@ export interface KeycatConfig {
    * If you provide custom nodes in eos blockchain, even if network is set to 'main' or 'jungle' it will use nodes you provided.
    *
    */
-  blockchain: EOSConfig | KlaytnConfig;
+  blockchain: IEOSConfig | IKlaytnConfig
 }

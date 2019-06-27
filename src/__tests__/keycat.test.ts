@@ -1,5 +1,5 @@
-import 'jest';
-import { Keycat } from '../index';
+import 'jest'
+import { Keycat } from '../index'
 
 test('Test keycat origin generation', () => {
   const keycat = new Keycat({
@@ -7,10 +7,10 @@ test('Test keycat origin generation', () => {
       name: 'eos',
       network: 'jungle',
     },
-  });
+  })
 
-  expect(keycat.keycatOrigin).toBe('https://eos-jungle.keycat.co');
-});
+  expect(keycat.keycatOrigin).toBe('https://eos-jungle.keycat.co')
+})
 
 test('Test keycat with custom nodes', () => {
   const keycat = new Keycat({
@@ -19,13 +19,13 @@ test('Test keycat with custom nodes', () => {
       network: 'main',
       nodes: ['hello'],
     },
-  });
+  })
 
-  expect(keycat.keycatOrigin).toBe('https://eos.keycat.co');
-});
+  expect(keycat.keycatOrigin).toBe('https://eos.keycat.co')
+})
 
 test('Keycat with custom origin', () => {
-  const a = 'http://localhost:3000';
+  const a = 'http://localhost:3000'
 
   const keycat = new Keycat({
     __keycatOrigin: a,
@@ -34,10 +34,10 @@ test('Keycat with custom origin', () => {
       network: 'custom',
       nodes: ['hello'],
     },
-  });
+  })
 
-  expect(keycat.keycatOrigin).toBe('http://localhost:3000');
-});
+  expect(keycat.keycatOrigin).toBe('http://localhost:3000')
+})
 
 test('Keycat with custom blockchain', () => {
   const keycat = new Keycat({
@@ -46,7 +46,7 @@ test('Keycat with custom blockchain', () => {
       network: 'custom',
       nodes: ['hello'],
     },
-  });
+  })
 
-  expect(keycat.keycatOrigin).toBe('https://eos-custom.keycat.co');
-});
+  expect(keycat.keycatOrigin).toBe('https://eos-custom.keycat.co')
+})
