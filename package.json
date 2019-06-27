@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --passWithNoTests --config jestconfig.json",
-    "build": "rm -rf dist&&tsc -p ."
+    "build": "tsc -p ."
   },
   "repository": {
     "type": "git",

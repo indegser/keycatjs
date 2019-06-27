@@ -11,7 +11,7 @@ interface ISigninResult {
 class Keycat {
   private config: KeycatConfig;
   private popup: Window;
-  private account: string;
+  private currentAccount: string;
   public keycatOrigin: string;
 
   constructor(config: KeycatConfig) {
@@ -43,7 +43,7 @@ class Keycat {
     const search = qs.stringify({
       blockchain: JSON.stringify(blockchain),
       client,
-      account: this.account,
+      account: this.currentAccount,
       payload: this.encode(args),
     });
 
@@ -97,12 +97,18 @@ class Keycat {
     // this.closeIframe()
   };
 
+  private guardAccountAction = (methodName) => {
+    if (!this.currentAccount) {
+      throw new Error(`You must chain key like this. keycat.account('...').[${methodName}](...) `)
+    }
+  }
+
   encode = (data) => {
     return encodeURIComponent(btoa(JSON.stringify(data)));
   }
 
-  user = (account: string) => {
-    this.account = account
+  account = (account: string) => {
+    this.currentAccount = account
     return this
   }
 
@@ -111,14 +117,17 @@ class Keycat {
   };
 
   signTransaction = (...args) => {
+    this.guardAccountAction('signTransaction')
     return this.open<any>(this.buildSrc('/sign-transaction', args));
   }
 
   signArbitraryData = (data) => {
+    this.guardAccountAction('signArbitraryData')
     return this.open<any>(this.buildSrc('/sign-arbitrary-data', data)) 
   }
 
   transact = (...args) => {
+    this.guardAccountAction('transact')
     const src = this.buildSrc('/transact', args);
     return this.open<any>(src);
   };
