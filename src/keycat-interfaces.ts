@@ -1,13 +1,13 @@
 export interface IEOSConfig {
   name: 'eos'
   nodes?: string[]
-  network: 'main' | 'jungle' | 'custom'
+  network: string
 }
 
 export interface IKlaytnConfig {
   name: 'klaytn'
   /** Klaytn currently supports only baobab. There's no main */
-  network: 'baobab'
+  network: string
   rpcURL?: string
 }
 
