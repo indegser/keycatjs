@@ -1,6 +1,6 @@
 {
   "name": "keycatjs",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "this compact and efficient client library provides access to Keycat service. See below for a list of supported APIs.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
