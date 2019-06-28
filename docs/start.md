@@ -27,7 +27,7 @@ const keycat = new Keycat({
 // e.g) This function is called when user clicks keycat signin button.
 async function handleSignin() {
   try {
-    const { account } = await keycat.signin()
+    const { accountName, permission, publicKey } = await keycat.signin()
   } catch (err) {
     ...
   }
@@ -40,12 +40,14 @@ async function handleSignin() {
 async function handleRequest() {
   // Use account info saved in cookie, localStorage or variable.
   try {
-    await keycat.transact(
-      account,
-      {
+    await keycat
+      .account('testaccount1')
+      .transact({
         actions: [...]
-      }
-    )
+      }, {
+        blocksBehind: 3,
+        expireSeconds: 30,
+      })
   } catch (err) {
 
   }

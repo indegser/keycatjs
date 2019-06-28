@@ -1,5 +1,5 @@
 ---
-description: 'Keycat is a browser-based wallet, supported by the Keychain technology.'
+description: Keycat is a keychain-based authenticator.
 ---
 
 # What is Keycat
