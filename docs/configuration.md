@@ -25,8 +25,35 @@ const eosJunglenetKeycat = new Keycat({
     },
 })
 
+// SIDECHAIN examples.
+
+// For eos sidechains like worbli and bos etc., set network property as sidechain
+// name and provide nodes(nodes should be using https as protocol).
+
+const worbliKeycat = new Keycat({
+    blockchain: {
+        name: 'eos',
+        network: 'worbli',
+        nodes: [
+            'https://api.worbli.io',
+            'https://api.worbli-mainnet.eoscalgary.io',
+        ],
+    }
+})
+
+const bosKeycat = new Keycat({
+    blockchain: {
+        name: 'eos',
+        network: 'bos',
+        nodes: [
+            'https://api.bossweden.org',
+            'https://hapi.bos.eosrio.io',
+        ],
+    }
+})
+
 // If you are running your own Mainnet node,
-// and would like to use if instead of pre-defined nodes.
+// and would like to use it instead of pre-defined nodes.
 // Pass nodes(all node should be using protocol 'https')
 const eosMainnetKeycatWithCustomNodes = new Keycat({
     blockchain: {
@@ -61,7 +88,7 @@ Initializing `Keycat` requires `blockchain` property.
 ```typescript
 interface BlockchainConfig {
     name: 'eos';
-    network: 'main'|'jungle'|'custom';
+    network: string;
     nodes?: string[]; // optional in main/jungle network. Keycat will use pre-defined nodes for those networks.
 }
 
