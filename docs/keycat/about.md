@@ -8,9 +8,7 @@ description: Keycat is a keychain-based authenticator.
 
 {% embed url="https://youtu.be/VInyicUG7Nw" caption="" %}
 
-\*\*\*\*
-
-**Keycat** is a browser-based wallet, supported by the **Keychain** technology.
+**Keycat** is a browser-based authenticator, supported by the **Keychain** technology.
 
 {% hint style="info" %}
 _**Keychain**: Major browsers \(Chrome, Safari, Firefox\) and OS providers \(Apple, Google\) offer a security technology called Keychain. When you try to access a website or email account, you may have seen an pop-up option to save your password in the browser \(usually, the pop-up shows up on the top right corner of the browser.\) Here, the Keychain technology is used for storing your password \(private key\) in the browser._
