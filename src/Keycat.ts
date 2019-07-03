@@ -76,7 +76,7 @@ class Keycat {
     this.popup = window.open(src, 'Keycat', opts)
 
     const timer = setInterval(() => {
-      if (this.popup.closed) {
+      if (this.popup && this.popup.closed) {
         clearInterval(timer)
         deferred.reject('CLOSED')
       }
