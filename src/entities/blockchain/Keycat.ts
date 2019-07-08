@@ -1,47 +1,44 @@
-import * as qs from 'query-string'
-import { IKeycatConfig } from './keycat-interfaces'
-import { Deferred } from './Deferred'
 
-interface ISigninResult {
-  accountName: string
-  permission: string
-  publicKey: string
+import * as qs from 'query-string'
+import { Deferred } from '../../Deferred'
+import { SigninResult } from './keycatInterfaces'
+import { chainNameType } from '../types'
+
+abstract class AbstractKeycat {
+  protected abstract getNodes(): Array<string>;
+  abstract getKeycatOrigin(): string;
 }
 
-class Keycat {
-  private config: IKeycatConfig
-  private popup: Window
-  private currentAccount: string
-  public keycatOrigin: string
+class Keycat extends AbstractKeycat {
+  private popup: Window;
+  private currentAccount: string;
+  private __keycatOrigin: string;
+  public keycatOrigin: string;
 
-  constructor(config: IKeycatConfig) {
-    this.config = config
+  private chainName: chainNameType;
+  private displayName: string;
+
+  constructor(chainName: chainNameType, displayName) {
+    super()
+    this.chainName = chainName
+    this.displayName = displayName
     this.keycatOrigin = this.getKeycatOrigin()
   }
 
-  private getKeycatOrigin = () => {
-    const defaultOrigin = `https://{{NAME}}.keycat.co`
-    const {
-      blockchain: { name, network },
-      __keycatOrigin,
-    } = this.config
+  protected getNodes() {
+    return [];
+  }
 
-    if (__keycatOrigin) {
-      return __keycatOrigin
-    }
-    const subdomain = [name, network]
-      .filter(Boolean)
-      .join('-')
-      .replace('-main', '')
-    return defaultOrigin.replace('{{NAME}}', subdomain)
+  getKeycatOrigin = () => {
+    return `https://${this.displayName}.keycat.co`
   }
 
   private buildSrc = (path: string, args = []) => {
     const client = location.origin
-    const { blockchain } = this.config
 
     const search = qs.stringify({
-      blockchain: JSON.stringify(blockchain),
+      blockchain: this.chainName,
+      nodes: JSON.stringify(this.getNodes()),
       client,
       account: this.currentAccount,
       payload: this.encode(args),
@@ -113,8 +110,7 @@ class Keycat {
   }
 
   public signin = () => {
-    const a = 'asdfs'
-    return this.open<ISigninResult>(this.buildSrc('/signin'))
+    return this.open<SigninResult>(this.buildSrc('/signin'))
   }
 
   public signTransaction = (...args) => {
@@ -135,3 +131,4 @@ class Keycat {
 }
 
 export default Keycat
+
