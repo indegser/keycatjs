@@ -6,13 +6,12 @@ import { chainNameType } from '../types'
 
 abstract class AbstractKeycat {
   protected abstract getNodes(): Array<string>;
-  abstract getKeycatOrigin(): string;
+  protected abstract getKeycatOrigin(): string;
 }
 
 class Keycat extends AbstractKeycat {
   private popup: Window;
   private currentAccount: string;
-  private __keycatOrigin: string;
   public keycatOrigin: string;
 
   private chainName: chainNameType;
@@ -29,7 +28,7 @@ class Keycat extends AbstractKeycat {
     return [];
   }
 
-  getKeycatOrigin = () => {
+  protected getKeycatOrigin() {
     return `https://${this.displayName}.keycat.co`
   }
 
