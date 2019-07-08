@@ -1,43 +1,27 @@
-
 import * as qs from 'query-string'
 import { Deferred } from '../../Deferred'
-import { SigninResult } from './keycatInterfaces'
-import { chainNameType } from '../types'
+import { ISigninResult } from './keycatInterfaces'
 
-abstract class AbstractKeycat {
-  protected abstract getNodes(): Array<string>;
-  protected abstract getKeycatOrigin(): string;
-}
+abstract class Keycat {
+  private popup: Window
+  private currentAccount: string
 
-class Keycat extends AbstractKeycat {
-  private popup: Window;
-  private currentAccount: string;
-  public keycatOrigin: string;
+  constructor(private blockchain) {}
 
-  private chainName: chainNameType;
-  private displayName: string;
+  abstract get name(): string
 
-  constructor(chainName: chainNameType, displayName) {
-    super()
-    this.chainName = chainName
-    this.displayName = displayName
-    this.keycatOrigin = this.getKeycatOrigin()
-  }
-
-  protected getNodes() {
-    return [];
-  }
-
-  protected getKeycatOrigin() {
-    return `https://${this.displayName}.keycat.co`
+  get keycatOrigin() {
+    return `https://${this.name}.keycat.co`
   }
 
   private buildSrc = (path: string, args = []) => {
     const client = location.origin
 
     const search = qs.stringify({
-      blockchain: this.chainName,
-      nodes: JSON.stringify(this.getNodes()),
+      blockchain: JSON.stringify({
+        ...this.blockchain,
+        name: this.name,
+      }),
       client,
       account: this.currentAccount,
       payload: this.encode(args),
@@ -109,7 +93,7 @@ class Keycat extends AbstractKeycat {
   }
 
   public signin = () => {
-    return this.open<SigninResult>(this.buildSrc('/signin'))
+    return this.open<ISigninResult>(this.buildSrc('/signin'))
   }
 
   public signTransaction = (...args) => {
@@ -130,4 +114,3 @@ class Keycat extends AbstractKeycat {
 }
 
 export default Keycat
-

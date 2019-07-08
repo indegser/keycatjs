@@ -1,8 +1,4 @@
-export interface CustomConfig {
-  origin: string;
-}
-
-export interface SigninResult {
+export interface ISigninResult {
   accountName: string
   permission: string
   publicKey: string

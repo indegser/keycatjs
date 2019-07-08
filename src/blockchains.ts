@@ -1,24 +1,10 @@
-import {
-  Eos, EosJungle, EosKylin, Worbli, Bos, Telos, Meetone, Wax, EosCustom,
-} from "./entities/class/blockchain/eos";
-import {
-  Klaytn, KlaytnBaobab, KlaytnCustom,
-} from "./entities/class/blockchain/klaytn";
+import * as eos from './entities/blockchain/eos'
+// import * as klaytn from './entities/blockchain/klaytn'
 
 export default {
   /* eosio */
-  Eos,
-  EosJungle,
-  EosKylin,
-  Worbli,
-  Bos,
-  Telos,
-  Meetone,
-  Wax,
-  EosCustom,
+  ...eos,
 
   /* Klaytn */
-  Klaytn,
-  KlaytnBaobab,
-  KlaytnCustom,
+  // ...klaytn,
 }

@@ -1,71 +1,74 @@
 import Keycat from './Keycat'
-import { EosConfig, CustomEosConfig } from './eosInterfaces'
 
 export class Eos extends Keycat {
-  private nodes: Array<string>;
-
-  constructor(nodes: Array<string>, displayName?: string) {
-    const chainName = 'eos'
-    super(chainName, displayName || chainName)
-    this.nodes = nodes
+  constructor(nodes: string[]) {
+    super({
+      plugin: 'eos',
+      nodes,
+    })
   }
 
-  getNodes() {
-    return this.nodes
+  get name() {
+    return 'eos'
   }
 }
 
 export class EosJungle extends Eos {
-  constructor({ nodes }: EosConfig) {
-    super(nodes, 'eos-jungle')
+  get name() {
+    return 'eos-jungle'
   }
 }
 
 export class EosKylin extends Eos {
-  constructor({ nodes }: EosConfig) {
-    super(nodes, 'eos-kylin')
+  get name() {
+    return 'eos-kylin'
   }
 }
 
 export class Worbli extends Eos {
-  constructor({ nodes }: EosConfig) {
-    super(nodes, 'worbli')
+  get name() {
+    return 'worbli'
   }
 }
 
 export class Bos extends Eos {
-  constructor({ nodes }: EosConfig) {
-    super(nodes, 'worbli')
+  get name() {
+    return 'bos'
   }
 }
 
 export class Telos extends Eos {
-  constructor({ nodes }: EosConfig) {
-    super(nodes, 'telos')
+  get name() {
+    return 'telos'
   }
 }
 
 export class Meetone extends Eos {
-  constructor({ nodes }: EosConfig) {
-    super(nodes, 'meetone')
+  get name() {
+    return 'meetone'
   }
 }
 
 export class Wax extends Eos {
-  constructor({ nodes }: EosConfig) {
-    super(nodes, 'wax')
+  get name() {
+    return 'wax'
   }
 }
 
 export class EosCustom extends Eos {
-  private origin: string;
+  constructor(nodes: string[], public origin: string) {
+    super(nodes)
 
-  constructor({ nodes, origin }: CustomEosConfig) {
-    super(nodes, 'eos-custom')
-    this.origin = origin
+    if (origin.includes('keycat.co')) {
+      throw new Error('origin property cannot contain keycat.co')
+    }
   }
 
-  getKeycatOrigin() {
+  get name() {
+    return 'eos-custom'
+  }
+
+  get keycatOrigin() {
     return this.origin
   }
 }
