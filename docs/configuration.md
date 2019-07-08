@@ -11,92 +11,40 @@ description: >-
 ```typescript
 import { Keycat } from 'keycat'
 
-const eosMainnetKeycat = new Keycat({
-    blockchain: {
-        name: 'eos',
-        network: 'main',
-    },
-})
+const nodes = [
+    'https://example.com',
+    'https://example1.com',
+]
 
-const eosJunglenetKeycat = new Keycat({
-    blockchain: {
-        name: 'eos',
-        network: 'jungle',
-    },
-})
+const eosMainnetKeycat = new Keycat.Eos(nodes)
+const eosJunglenetKeycat = new Keycat.EosJungle(nodes)
 
 // SIDECHAIN examples.
+const worbliKeycat = new Keycat.Worbli([
+    'https://api.worbli.io',
+    'https://api.worbli-mainnet.eoscalgary.io',
+])
 
-// For eos sidechains like worbli and bos etc., set network property as sidechain
-// name and provide nodes(nodes should be using https as protocol).
-
-const worbliKeycat = new Keycat({
-    blockchain: {
-        name: 'eos',
-        network: 'worbli',
-        nodes: [
-            'https://api.worbli.io',
-            'https://api.worbli-mainnet.eoscalgary.io',
-        ],
-    }
-})
-
-const bosKeycat = new Keycat({
-    blockchain: {
-        name: 'eos',
-        network: 'bos',
-        nodes: [
-            'https://api.bossweden.org',
-            'https://hapi.bos.eosrio.io',
-        ],
-    }
-})
-
-// If you are running your own Mainnet node,
-// and would like to use it instead of pre-defined nodes.
-// Pass nodes(all node should be using protocol 'https')
-const eosMainnetKeycatWithCustomNodes = new Keycat({
-    blockchain: {
-        name: 'eos',
-        network: 'main',
-        nodes: [
-            'https://some-mainnetnode.com',
-        ],
-    },
-})
-
-// If you are running your own keycat(by cloning keycat repository)
-// And you have to use your local nodeos for development.
-const customNodesKeycat = new Keycat({
-    blockchain: {
-        name: 'eos',
-        network: 'custom',
-        nodes: [
-            'http://mylocalnodeos.com',
-            'http://localhost:18888',
-        ],
-    },
-    __keycatOrigin: 'http://localhost:3030',
-})
-
+const bosKeycat = new Keycat.Bos([
+    'https://api.bossweden.org',
+    'https://hapi.bos.eosrio.io',
+])
 ```
 
-**KeycatJS** is designed for flexible usage like setting custom nodes, using non-https endpoints and testing in localhost.
+**Keycatjs** is designed for flexible usage while providing full Typescript support. All you have to provide is list of nodes for each networks.
 
-Initializing `Keycat` requires `blockchain` property.
+### EOS Network Presets
 
-```typescript
-interface BlockchainConfig {
-    name: 'eos';
-    network: string;
-    nodes?: string[]; // optional in main/jungle network. Keycat will use pre-defined nodes for those networks.
-}
-
-interface KeycatConfig {
-    blockchain: BlockchainConfig;
-    __keycatOrigin?: string; // optional.
-}
-```
+| Name | Keycat URL |
+| :--- | :--- |
+| Mainnet | eos.keycat.co |
+| Jungle | eos-jungle.keycat.co |
+| Kylin | eos-kylin.keycat.co |
+| Worbli | worbli.keycat.co |
+| Bos | bos.keycat.co |
+| Telos | telos.keycat.co |
+| Meetone | meetone.keycat.co |
+| Wax | wax.keycat.co |
 
 
 

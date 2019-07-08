@@ -14,11 +14,11 @@ yarn add keycatjs
 ```javascript
 import { Keycat } from 'keycatjs'
 
-// connect to eos main net
-const keycat = new Keycat({
-  blockchain: 'eos',
-  network: 'main', // use 'jungle', if you want to test in jungle net
-})
+// Connect to eos main net
+const keycat = new Keycat.Eos([
+  'https://mainnetnode1.com',
+  'https://mainnetnode2.com',
+])
 ```
 
 ### Request Sign-in

@@ -3,7 +3,6 @@
 * [Introduction](README.md)
 * [Getting Started](start.md)
 * [Configuration](configuration.md)
-* [Signing-in](signing-in.md)
 
 ## Keycat
 

@@ -1,13 +1,5 @@
 # How-To-Use
 
-## Supported Blockchains
-
-| Service | Supported blockchain |
-| :--- | :--- |
-| [https://eos.keycat.co](https://eos.keycat.co) | EOS Mainnet |
-| [https://eos-jungle.keycat.co](https://eos-jungle.keycat.co) | EOS Junglenet |
-| [https://klaytn-baobab.keycat.co](https://klaytn-baobab.keycat.co) | Klaytn Baobab |
-
 ## Register
 
 Keycat works by preparing a page for browser to auto-fill `account` and `private key` you saved. If it is your first time using Keycat, You will encounter empty Sign-in Page like below.
