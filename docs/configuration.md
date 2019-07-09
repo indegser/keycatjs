@@ -22,7 +22,7 @@ const eosJunglenetKeycat = new Keycat.EosJungle(nodes)
 // SIDECHAIN examples.
 const worbliKeycat = new Keycat.Worbli([
     'https://api.worbli.io',
-    'https://api.worbli-mainnet.eoscalgary.io',
+    'worbli.eoscafeblock.com',
 ])
 
 const bosKeycat = new Keycat.Bos([
