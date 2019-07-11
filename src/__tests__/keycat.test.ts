@@ -1,5 +1,5 @@
 import 'jest'
-import { Keycat } from '../index'
+import { Keycat, _keycat } from '../index'
 
 test('Test Keycat name mapping', () => {
   const keycat = new Keycat.Eos(['test'])

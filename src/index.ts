@@ -20,15 +20,9 @@ enum UX {
   page,
 }
 
-enum Eos {
-  eos,
-  eosJungle,
-  eosKylin,
-  worbli,
-  telos,
-  bos,
-  meetone,
-}
+const eosList = ['eos', 'eos-jungle', 'eos-kylin', 'worbli', 'telos', 'meetone', 'bos'] as const
+
+type EosNames = typeof eosList[number]
 
 enum Klaytn {
   klaytn,
@@ -36,7 +30,7 @@ enum Klaytn {
 }
 
 interface IEos {
-  name: keyof typeof Eos
+  name: EosNames
   plugin: 'eos'
   nodes: string[]
 }
@@ -50,10 +44,6 @@ interface IKlaytn {
 interface IKeycatConfig {
   ux?: keyof typeof UX
   blockchain: IEos | IKlaytn
-}
-
-function camelCaseToDash(myStr) {
-  return myStr.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
 function _keycat(config: IKeycatConfig) {
@@ -126,7 +116,7 @@ function _keycat(config: IKeycatConfig) {
       }, {}),
     )
 
-    return [`https://${camelCaseToDash(config.blockchain.name)}.keycat.co`, path, `?${search}`].join('')
+    return [`https://${config.blockchain.name}.keycat.co`, path, `?${search}`].join('')
   }
 
   // PRIVATE METHODS
