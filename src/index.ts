@@ -67,7 +67,7 @@ class Keycat {
       throw new Error(`Unknown configuration for 'blockchain' property.`)
     }
 
-    // eslint:disable-next-line
+    // tslint:disable-next-line
     console.warn(
       `You are using custom name. We hope you understand what you are doing. We recommend using a preset name.`,
     )
