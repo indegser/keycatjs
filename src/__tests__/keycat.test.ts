@@ -1,47 +1,42 @@
 import 'jest'
-import { Keycat, _keycat } from '../index'
+import { Keycat } from '../index'
 
-test('Test Keycat name mapping', () => {
+test('Test Keycat with static Eos', () => {
   const keycat = new Keycat.Eos(['test'])
-
-  expect(keycat.name).toBe('eos')
+  expect(keycat.keycatOrigin).toBe('https://eos.keycat.co')
 })
 
-// test('Test keycat with custom nodes', () => {
-//   const keycat = new Keycat({
-//     blockchain: {
-//       name: 'eos',
-//       network: 'main',
-//       nodes: ['hello'],
-//     },
-//   })
+test('Keycat with proper config', () => {
+  const keycat = new Keycat({
+    blockchain: {
+      name: 'eos',
+      nodes: [],
+    },
+  })
 
-//   expect(keycat.keycatOrigin).toBe('https://eos.keycat.co')
-// })
+  expect(keycat.keycatOrigin).toBe('https://eos.keycat.co')
+})
 
-// test('Keycat with custom origin', () => {
-//   const a = 'http://localhost:3000'
+test('Keycat with custom name in full url', () => {
+  const keycat = new Keycat({
+    blockchain: {
+      name: 'https://test.keycat.co',
+      plugin: 'klaytn',
+      rpcUrl: 'http://test.com',
+    },
+  })
 
-//   const keycat = new Keycat({
-//     __keycatOrigin: a,
-//     blockchain: {
-//       name: 'eos',
-//       network: 'custom',
-//       nodes: ['hello'],
-//     },
-//   })
+  expect(keycat.keycatOrigin).toBe('https://test.keycat.co')
+})
 
-//   expect(keycat.keycatOrigin).toBe('http://localhost:3000')
-// })
+test('Keycat with custom name in shortname', () => {
+  const keycat = new Keycat({
+    blockchain: {
+      name: 'test',
+      plugin: 'klaytn',
+      rpcUrl: 'http://test.com',
+    },
+  })
 
-// test('Keycat with custom blockchain', () => {
-//   const keycat = new Keycat({
-//     blockchain: {
-//       name: 'eos',
-//       network: 'custom',
-//       nodes: ['hello'],
-//     },
-//   })
-
-//   expect(keycat.keycatOrigin).toBe('https://eos-custom.keycat.co')
-// })
+  expect(keycat.keycatOrigin).toBe('https://test.keycat.co')
+})
