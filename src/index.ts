@@ -28,11 +28,17 @@ type IKlaytn =
       rpcUrl: string
     }
 
-type TBlockchain = IEos | IKlaytn
+type IEthereum = {
+  plugin: 'ethereum'
+  name: typeof Blockchain.ethereum[number]
+}
+
+type TBlockchain = IEos | IKlaytn | IEthereum
 
 interface IKeycatConfig {
   ux?: keyof typeof WindowUX
   blockchain: TBlockchain
+  __keycatOrigin?: string
 }
 
 class Keycat {
@@ -122,11 +128,12 @@ class Keycat {
 
   get keycatOrigin(): string {
     const {
+      __keycatOrigin,
       blockchain: { name },
     } = this.config
 
     try {
-      const url = new URL(name)
+      const url = new URL(__keycatOrigin || name)
       return url.origin
     } catch (err) {
       if (err.message.includes('Invalid URL')) {
