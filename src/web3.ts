@@ -24,10 +24,9 @@ const keycatWeb3Provider = (keycat: Keycat) => {
       async signTransaction(transaction, cb) {
         if (transaction.gas !== undefined) transaction.gasLimit = transaction.gas
         transaction.value = transaction.value || '0x00'
+        const { gas, ...txPayload } = transaction
 
-        const { from, gas, ...txPayload } = transaction
-
-        const hash = await keycat.account(from).signTransaction(txPayload)
+        const hash = await keycat.account(transaction.from).signTransaction(txPayload)
 
         cb(null, hash)
         return hash
@@ -35,7 +34,7 @@ const keycatWeb3Provider = (keycat: Keycat) => {
     }),
   )
 
-  const { rpcUrl } = keycat.config.blockchain
+  const { rpcUrl } = keycat.config.blockchain as any
   const url = new URL(rpcUrl)
 
   if (url.protocol.indexOf('http') > -1) engine.addProvider(new RpcSubprovider({ rpcUrl }))
