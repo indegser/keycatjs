@@ -3,6 +3,7 @@ import Blockchain, { appendPlugin } from './Blockchain'
 import validators, { IBlockchainValidator } from './Validator'
 import { ISigninResponse, WindowUX } from './Types'
 import { openWindow, makeWindowUrl } from './utils/window'
+import keycatWeb3Provider from './web3'
 
 type IEos =
   | {
@@ -28,14 +29,17 @@ type IKlaytn =
       rpcUrl: string
     }
 
-type IEthereum = {
+interface IEthereum {
   plugin: 'ethereum'
+  rpcUrl?: string
+  provider?: typeof Blockchain.ethereum[number] | string
   name: typeof Blockchain.ethereum[number]
 }
 
 type TBlockchain = IEos | IKlaytn | IEthereum
 
 interface IKeycatConfig {
+  account?: string
   ux?: keyof typeof WindowUX
   blockchain: TBlockchain
   __keycatOrigin?: string
@@ -45,8 +49,9 @@ class Keycat {
   private win: Window
   private _account: string
 
-  constructor(private config: IKeycatConfig) {
+  constructor(public config: IKeycatConfig) {
     this.validateBlockchain(config.blockchain)
+    this._account = config.account
   }
 
   public static Eos: typeof KeycatEos
@@ -77,6 +82,12 @@ class Keycat {
     console.warn(
       `You are using custom name. We hope you understand what you are doing. We recommend using a preset name.`,
     )
+  }
+
+  public web3(Web3) {
+    const provider = keycatWeb3Provider(this)
+    const web3 = new Web3(provider)
+    return web3
   }
 
   private spawnWindow(url: string, secure: boolean = false): Promise<any> {
@@ -167,6 +178,8 @@ class Keycat {
     const url = makeWindowUrl(this.keycatOrigin, '/sign-transaction', this.makeUrlData(args))
     return this.spawnWindow(url, true)
   }
+
+  public sign = this.signTransaction
 }
 
 class KeycatEos extends Keycat {
