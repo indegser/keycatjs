@@ -3,7 +3,7 @@ import Blockchain, { appendPlugin } from './Blockchain'
 import validators, { IBlockchainValidator } from './Validator'
 import { ISigninResponse, WindowUX } from './Types'
 import { openWindow, makeWindowUrl } from './utils/window'
-import keycatWeb3Provider from './web3'
+// import keycatWeb3Provider from './web3'
 
 type IEos =
   | {
@@ -85,9 +85,9 @@ class Keycat {
   }
 
   public web3(Web3) {
-    const provider = keycatWeb3Provider(this)
-    const web3 = new Web3(provider)
-    return web3
+    // const provider = keycatWeb3Provider(this)
+    // const web3 = new Web3(provider)
+    // return web3
   }
 
   private spawnWindow(url: string, secure: boolean = false): Promise<any> {
@@ -101,7 +101,7 @@ class Keycat {
     const timer = setInterval(() => {
       if (!this.win || this.win.closed) {
         clearInterval(timer)
-        // deferred.reject('Closed')
+        deferred.reject('closed')
       }
     }, 500)
 
