@@ -1,0 +1,30 @@
+{
+  "name": "@keycatjs/web3",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "indegser <indegser@eosdaq.com>",
+  "homepage": "https://github.com/EOSDAQ/keycatjs/tree/master/packages/web3#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EOSDAQ/keycatjs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/EOSDAQ/keycatjs/issues"
+  },
+  "scripts": {
+    "tsc": "tsc"
+  },
+  "dependencies": {
+    "@keycatjs/core": "0.0.1",
+    "web3-provider-engine": "^15.0.0"
+  }
+}

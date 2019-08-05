@@ -1,24 +1,18 @@
 {
-  "name": "keycatjs",
-  "version": "0.9.1",
-  "description": "this compact and efficient client library provides access to Keycat service. See below for a list of supported APIs.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "root",
   "scripts": {
-    "preversion": "npm test && npm run format && npm run lint",
+    "preversion": "npm test && npm run format",
     "postversion": "git push && git push --tags && npm publish",
-    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p .",
+    "format": "prettier --write \"packages/**/*.ts\" \"packages/**/*.js\"",
     "test": "jest --passWithNoTests --config jestconfig.json",
-    "build": "tsc -p ."
+    "bootstrap": "lerna bootstrap --hoist",
+    "start": "lerna run start --stream",
+    "tsc": "lerna run tsc --stream"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/EOSDAQ/keycatjs.git"
   },
-  "files": [
-    "dist/**/*"
-  ],
   "keywords": [
     "wallet",
     "blockchain",
@@ -31,13 +25,11 @@
     "url": "https://github.com/EOSDAQ/keycatjs/issues"
   },
   "homepage": "https://github.com/EOSDAQ/keycatjs#readme",
-  "dependencies": {
-    "query-string": "^6.5.0",
-    "web3-provider-engine": "^15.0.0"
-  },
   "devDependencies": {
     "@types/jest": "^24.0.13",
+    "@types/node": "^12.6.9",
     "jest": "^24.8.0",
+    "lerna": "^3.16.4",
     "prettier": "^1.9",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
