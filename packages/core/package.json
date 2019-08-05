@@ -3,7 +3,7 @@
   "version": "1.0.0-alpha.0",
   "description": "> TODO: description",
   "author": "indegser <indegser@eosdaq.com>",
-  "homepage": "https://github.com/EOSDAQ/keycatjs/tree/master/packages/keycatjs-core#readme",
+  "homepage": "https://github.com/EOSDAQ/keycatjs/tree/master/packages/core#readme",
   "license": "ISC",
   "main": "lib/index.js",
   "directories": {

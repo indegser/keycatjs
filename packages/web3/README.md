@@ -4,8 +4,11 @@
 
 ## Usage
 
-```
-const web3 = require('web3');
+```typescript
+import Keycat from '@keycatjs/web3';
+import Web3 from 'web3';
 
-// TODO: DEMONSTRATE API
+const keycat = new Keycat(...);
+const web3 = keycat.web3(Web3);
+
 ```

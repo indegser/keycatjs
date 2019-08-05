@@ -2,7 +2,6 @@
   "name": "root",
   "scripts": {
     "preversion": "npm test && npm run format",
-    "postversion": "git push && git push --tags && npm publish",
     "format": "prettier --write \"packages/**/*.ts\" \"packages/**/*.js\"",
     "test": "jest --passWithNoTests --config jestconfig.json",
     "bootstrap": "lerna bootstrap --hoist",
