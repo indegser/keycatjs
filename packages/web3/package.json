@@ -1,6 +1,6 @@
 {
   "name": "@keycatjs/web3",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.0",
   "description": "> TODO: description",
   "author": "indegser <indegser@eosdaq.com>",
   "homepage": "https://github.com/EOSDAQ/keycatjs/tree/master/packages/web3#readme",
@@ -24,7 +24,7 @@
     "tsc": "tsc"
   },
   "dependencies": {
-    "@keycatjs/core": "0.0.1",
+    "@keycatjs/core": "^1.0.0-alpha.0",
     "web3-provider-engine": "^15.0.0"
   }
 }
