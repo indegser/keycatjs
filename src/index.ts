@@ -147,10 +147,7 @@ class Keycat {
       const url = new URL(__keycatOrigin || name)
       return url.origin
     } catch (err) {
-      if (err.message.includes('Invalid URL')) {
-        return `https://${name}.keycat.co`
-      }
-      throw err
+      return `https://${name}.keycat.co`
     }
   }
 
