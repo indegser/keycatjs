@@ -6,7 +6,7 @@
   "types": "dist/cjs/index.d.ts",
   "scripts": {
     "preversion": "npm run build && npm test && npm run format && npm run lint",
-    "postversion": "git push && git push --tags && npm publish",
+    "postversion": "git push && git push --tags",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p .",
     "test": "jest --passWithNoTests --config jestconfig.json",
