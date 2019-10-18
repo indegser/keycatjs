@@ -3,7 +3,6 @@ import Blockchain, { appendPlugin } from './Blockchain'
 import validators, { IBlockchainValidator } from './Validator'
 import { ISigninResponse, WindowUX } from './Types'
 import { openWindow, makeWindowUrl } from './utils/window'
-// import keycatWeb3Provider from './web3'
 
 type IEos =
   | {
@@ -58,6 +57,7 @@ class Keycat {
   public static EosCustom: typeof KeycatEosCustom
   public static EosJungle: typeof KeycatEosJungle
   public static EosKylin: typeof KeycatEosKylin
+  public static Wax: typeof KeycatWax
   public static Meetone: typeof KeycatMeetone
   public static Worbli: typeof KeycatWorbli
   public static Telos: typeof KeycatTelos
@@ -250,7 +250,18 @@ class KeycatWorbli extends Keycat {
   constructor(nodes) {
     super({
       blockchain: {
-        name: 'worbli',
+        name: 'wax',
+        nodes,
+      },
+    })
+  }
+}
+
+class KeycatWax extends Keycat {
+  constructor(nodes) {
+    super({
+      blockchain: {
+        name: 'eos',
         nodes,
       },
     })
@@ -277,5 +288,6 @@ Keycat.Telos = KeycatTelos
 Keycat.Worbli = KeycatWorbli
 Keycat.Meetone = KeycatMeetone
 Keycat.EosCustom = KeycatEosCustom
+Keycat.Wax = KeycatWax
 
 export { Keycat }
