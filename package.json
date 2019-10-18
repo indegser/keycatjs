@@ -5,7 +5,7 @@
   "main": "dist/cjs/index.js",
   "types": "dist/cjs/index.d.ts",
   "scripts": {
-    "preversion": "npm test && npm run format && npm run lint",
+    "preversion": "npm run build && npm test && npm run format && npm run lint",
     "postversion": "git push && git push --tags && npm publish",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
     "lint": "tslint -p .",
