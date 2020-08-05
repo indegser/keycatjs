@@ -1,11 +1,7 @@
-const eos = ['eos', 'eos-jungle', 'eos-kylin', 'worbli', 'telos', 'meetone', 'bos', 'wax', 'telos-testnt'] as const
-const klaytn = ['klaytn', 'klaytn-baobab'] as const
-const ethereum = ['homestead', 'ropsten', 'kovan', 'rinkeby'] as const
+const eos = ['telos', 'telos-testnt'] as const
 
 const Blockchain = {
   eos,
-  klaytn,
-  ethereum,
 }
 
 export const appendPlugin = blockchain => {
