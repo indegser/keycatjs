@@ -61,6 +61,7 @@ class Keycat {
   public static Meetone: typeof KeycatMeetone
   public static Worbli: typeof KeycatWorbli
   public static Telos: typeof KeycatTelos
+  public static TelosTestnet: typeof KeycatTelosTestnet
   public static Bos: typeof KeycatBos
 
   private validateBlockchain(blockchain: TBlockchain) {
@@ -246,6 +247,17 @@ class KeycatTelos extends Keycat {
   }
 }
 
+class KeycatTelosTestnet extends Keycat {
+  constructor(nodes) {
+    super({
+      blockchain: {
+        name: 'telos-testnet',
+        nodes,
+      },
+    })
+  }
+}
+
 class KeycatWorbli extends Keycat {
   constructor(nodes) {
     super({
@@ -285,6 +297,7 @@ Keycat.EosKylin = KeycatEosKylin
 Keycat.EosJungle = KeycatEosJungle
 Keycat.Eos = KeycatEos
 Keycat.Telos = KeycatTelos
+Keycat.TelosTestnet = KeycatTelosTestnet
 Keycat.Worbli = KeycatWorbli
 Keycat.Meetone = KeycatMeetone
 Keycat.EosCustom = KeycatEosCustom
