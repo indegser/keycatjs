@@ -1,4 +1,15 @@
-const eos = ['eos', 'eos-jungle', 'eos-kylin', 'worbli', 'telos', 'meetone', 'bos', 'wax'] as const
+const eos = [
+  'eos',
+  'eos-jungle',
+  'telos',
+  'telos-testnet',
+  'eos-kylin',
+  'worbli',
+  'telos',
+  'meetone',
+  'bos',
+  'wax',
+] as const
 const klaytn = ['klaytn', 'klaytn-baobab'] as const
 const ethereum = ['homestead', 'ropsten', 'kovan', 'rinkeby'] as const
 
