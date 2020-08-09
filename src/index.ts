@@ -9,11 +9,13 @@ type IEos =
       name: typeof Blockchain.eos[number]
       nodes: string[]
       plugin?: never
+      urlOrigin: string
     }
   | {
       name: string
       plugin: 'eos'
       nodes: string[]
+      urlOrigin: string
     }
 
 type TBlockchain = IEos
@@ -108,18 +110,10 @@ class Keycat {
   get keycatOrigin(): string {
     const {
       __keycatOrigin,
-      blockchain: { name },
+      blockchain: { name, urlOrigin },
     } = this.config
 
-    try {
-      const url = new URL(__keycatOrigin || name)
-      return url.origin
-    } catch (err) {
-      if (err.message.includes('Invalid URL')) {
-        return `https://${name}.keycat.co`
-      }
-      throw err
-    }
+    return urlOrigin
   }
 
   public account(accountName: string) {
@@ -155,6 +149,7 @@ class KeycatTelos extends Keycat {
     super({
       blockchain: {
         name: 'telos',
+        urlOrigin: 'https://wallet.telos.net',
         nodes,
       },
     })
@@ -166,6 +161,7 @@ class KeycatTelosTestnet extends Keycat {
     super({
       blockchain: {
         name: 'telos-testnet',
+        urlOrigin: 'http://localhost:3030',
         nodes,
       },
     })
