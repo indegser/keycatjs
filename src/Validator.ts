@@ -22,24 +22,8 @@ class EosValidator implements IBlockchainValidator {
   }
 }
 
-class KlaytnValidator implements IBlockchainValidator {
-  public isAcceptable({ name, rpcUrl }) {
-    if (!Blockchain.klaytn.find(preset => name === preset)) return false
-    if (!rpcUrl) {
-      throwValidationError({
-        name,
-        property: 'rpcUrl',
-        blockchain: 'klaytn',
-      })
-    }
-
-    return true
-  }
-}
-
 const validators = {
   eos: EosValidator,
-  klaytn: KlaytnValidator,
 }
 
 export default validators

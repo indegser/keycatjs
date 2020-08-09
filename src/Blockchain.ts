@@ -1,4 +1,5 @@
-const eos = ['telos', 'telos-testnt'] as const
+
+const eos = ['telos', 'telos-testnet'] as const
 
 const Blockchain = {
   eos,
