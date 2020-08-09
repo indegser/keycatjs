@@ -16,26 +16,7 @@ type IEos =
       nodes: string[]
     }
 
-type IKlaytn =
-  | {
-      plugin?: never
-      name: typeof Blockchain.klaytn[number]
-      rpcUrl: string
-    }
-  | {
-      plugin: 'klaytn'
-      name: string
-      rpcUrl: string
-    }
-
-interface IEthereum {
-  plugin: 'ethereum'
-  rpcUrl?: string
-  provider?: typeof Blockchain.ethereum[number] | string
-  name: typeof Blockchain.ethereum[number]
-}
-
-type TBlockchain = IEos | IKlaytn | IEthereum
+type TBlockchain = IEos
 
 interface IKeycatConfig {
   account?: string
@@ -53,16 +34,8 @@ class Keycat {
     this._account = config.account
   }
 
-  public static Eos: typeof KeycatEos
-  public static EosCustom: typeof KeycatEosCustom
-  public static EosJungle: typeof KeycatEosJungle
-  public static EosKylin: typeof KeycatEosKylin
   public static Telos: typeof KeycatTelos
   public static TelosTestnet: typeof KeycatTelosTestnet
-  public static Wax: typeof KeycatWax
-  public static Meetone: typeof KeycatMeetone
-  public static Worbli: typeof KeycatWorbli
-  public static Bos: typeof KeycatBos
 
   private validateBlockchain(blockchain: TBlockchain) {
     const { name: chainName, plugin } = blockchain
@@ -83,12 +56,6 @@ class Keycat {
     console.warn(
       `You are using custom name. We hope you understand what you are doing. We recommend using a preset name.`,
     )
-  }
-
-  public web3(Web3) {
-    // const provider = keycatWeb3Provider(this)
-    // const web3 = new Web3(provider)
-    // return web3
   }
 
   private spawnWindow(url: string, secure: boolean = false): Promise<any> {
@@ -183,39 +150,6 @@ class Keycat {
   public sign = this.signTransaction
 }
 
-class KeycatEos extends Keycat {
-  constructor(nodes) {
-    super({
-      blockchain: {
-        name: 'eos',
-        nodes,
-      },
-    })
-  }
-}
-
-class KeycatEosJungle extends Keycat {
-  constructor(nodes) {
-    super({
-      blockchain: {
-        name: 'eos-jungle',
-        nodes,
-      },
-    })
-  }
-}
-
-class KeycatEosKylin extends Keycat {
-  constructor(nodes) {
-    super({
-      blockchain: {
-        name: 'eos-kylin',
-        nodes,
-      },
-    })
-  }
-}
-
 class KeycatTelos extends Keycat {
   constructor(nodes) {
     super({
@@ -238,70 +172,7 @@ class KeycatTelosTestnet extends Keycat {
   }
 }
 
-class KeycatBos extends Keycat {
-  constructor(nodes) {
-    super({
-      blockchain: {
-        name: 'bos',
-        nodes,
-      },
-    })
-  }
-}
-class KeycatMeetone extends Keycat {
-  constructor(nodes) {
-    super({
-      blockchain: {
-        name: 'meetone',
-        nodes,
-      },
-    })
-  }
-}
-
-class KeycatWorbli extends Keycat {
-  constructor(nodes) {
-    super({
-      blockchain: {
-        name: 'wax',
-        nodes,
-      },
-    })
-  }
-}
-
-class KeycatWax extends Keycat {
-  constructor(nodes) {
-    super({
-      blockchain: {
-        name: 'eos',
-        nodes,
-      },
-    })
-  }
-}
-
-class KeycatEosCustom extends Keycat {
-  constructor(nodes, origin) {
-    super({
-      blockchain: {
-        name: origin,
-        plugin: 'eos',
-        nodes,
-      },
-    })
-  }
-}
-
-Keycat.Bos = KeycatBos
-Keycat.EosKylin = KeycatEosKylin
-Keycat.EosJungle = KeycatEosJungle
-Keycat.Eos = KeycatEos
 Keycat.Telos = KeycatTelos
 Keycat.TelosTestnet = KeycatTelosTestnet
-Keycat.Worbli = KeycatWorbli
-Keycat.Meetone = KeycatMeetone
-Keycat.EosCustom = KeycatEosCustom
-Keycat.Wax = KeycatWax
 
 export { Keycat }
