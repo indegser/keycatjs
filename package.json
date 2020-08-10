@@ -22,7 +22,8 @@
     "url": "git+https://github.com/EOSDAQ/keycatjs.git"
   },
   "files": [
-    "dist/**/*"
+    "dist/**/*",
+    "src/**/*"
   ],
   "keywords": [
     "wallet",
