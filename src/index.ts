@@ -114,8 +114,15 @@ class Keycat {
       __keycatOrigin,
       blockchain: { name, urlOrigin },
     } = this.config
-
-    return urlOrigin
+    try {
+      const url = new URL(__keycatOrigin || name)
+      return url.origin
+    } catch (err) {
+      if (err.message.includes('Invalid URL')) {
+        return `https://${name}.keycat.co`
+      }
+      throw err
+    }
   }
 
   public account(accountName: string) {

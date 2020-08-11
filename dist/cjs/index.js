@@ -94,7 +94,16 @@ var Keycat = /** @class */ (function () {
         get: function () {
             console.log('this.config is: ', this.config);
             var _a = this.config, __keycatOrigin = _a.__keycatOrigin, _b = _a.blockchain, name = _b.name, urlOrigin = _b.urlOrigin;
-            return urlOrigin;
+            try {
+                var url = new URL(__keycatOrigin || name);
+                return url.origin;
+            }
+            catch (err) {
+                if (err.message.includes('Invalid URL')) {
+                    return "https://" + name + ".keycat.co";
+                }
+                throw err;
+            }
         },
         enumerable: true,
         configurable: true
