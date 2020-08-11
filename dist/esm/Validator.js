@@ -8,11 +8,13 @@ var EosValidator = /** @class */ (function () {
     }
     EosValidator.prototype.isAcceptable = function (_a) {
         var name = _a.name, nodes = _a.nodes, urlOrigin = _a.urlOrigin;
+        console.log('about to validate isAcceptable', name, nodes, urlOrigin);
         if (!Blockchain.eos.find(function (preset) { return name === preset; }))
             return false;
         if (!nodes) {
             throwValidationError({ name: name, property: 'nodes', blockchain: 'eos' });
         }
+        console.log('EosValidator true');
         return true;
     };
     return EosValidator;

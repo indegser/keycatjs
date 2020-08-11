@@ -12,12 +12,13 @@ const throwValidationError = ({ name, property, blockchain }) => {
 
 class EosValidator implements IBlockchainValidator {
   public isAcceptable({ name, nodes, urlOrigin }) {
+    console.log('about to validate isAcceptable', name, nodes, urlOrigin)
     if (!Blockchain.eos.find(preset => name === preset)) return false
 
     if (!nodes) {
       throwValidationError({ name, property: 'nodes', blockchain: 'eos' })
     }
-
+    console.log('EosValidator true')
     return true
   }
 }

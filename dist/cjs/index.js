@@ -24,6 +24,7 @@ var Keycat = /** @class */ (function () {
     function Keycat(config) {
         this.config = config;
         this.sign = this.signTransaction;
+        console.log('in Keycat constructor and config: ', config);
         this.validateBlockchain(config.blockchain);
         this._account = config.account;
     }
@@ -132,26 +133,32 @@ exports.Keycat = Keycat;
 var KeycatTelos = /** @class */ (function (_super) {
     __extends(KeycatTelos, _super);
     function KeycatTelos(nodes) {
-        return _super.call(this, {
+        var _this = this;
+        console.log('in KeycatTelos constructor');
+        _this = _super.call(this, {
             blockchain: {
                 name: 'telos',
                 urlOrigin: 'https://wallet.telos.net',
                 nodes: nodes,
             },
         }) || this;
+        return _this;
     }
     return KeycatTelos;
 }(Keycat));
 var KeycatTelosTestnet = /** @class */ (function (_super) {
     __extends(KeycatTelosTestnet, _super);
     function KeycatTelosTestnet(nodes) {
-        return _super.call(this, {
+        var _this = this;
+        console.log('in KeycatTelosTestnet constructor');
+        _this = _super.call(this, {
             blockchain: {
                 name: 'telos-testnet',
                 urlOrigin: 'http://localhost:3030',
                 nodes: nodes,
             },
         }) || this;
+        return _this;
     }
     return KeycatTelosTestnet;
 }(Keycat));

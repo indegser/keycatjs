@@ -32,6 +32,7 @@ class Keycat {
   private _account: string
 
   constructor(public config: IKeycatConfig) {
+    console.log('in Keycat constructor and config: ', config)
     this.validateBlockchain(config.blockchain)
     this._account = config.account
   }
@@ -147,6 +148,7 @@ class Keycat {
 
 class KeycatTelos extends Keycat {
   constructor(nodes) {
+    console.log('in KeycatTelos constructor')
     super({
       blockchain: {
         name: 'telos',
@@ -159,6 +161,7 @@ class KeycatTelos extends Keycat {
 
 class KeycatTelosTestnet extends Keycat {
   constructor(nodes) {
+    console.log('in KeycatTelosTestnet constructor')
     super({
       blockchain: {
         name: 'telos-testnet',
