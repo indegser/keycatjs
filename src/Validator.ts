@@ -15,7 +15,7 @@ class EosValidator implements IBlockchainValidator {
     if (!Blockchain.eos.find(preset => name === preset)) return false
 
     if (!nodes) {
-      throwValidationError({ name, property: 'nodes', blockchain: 'eos', urlOrigin })
+      throwValidationError({ name, property: 'nodes', blockchain: 'eos' })
     }
 
     return true

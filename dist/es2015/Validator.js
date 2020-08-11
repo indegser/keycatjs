@@ -3,7 +3,7 @@ const throwValidationError = ({ name, property, blockchain }) => {
     throw new Error(`Property '${property}' in 'blockchain' is required. This error occurred because '${name}' should follow initialization rules of '${blockchain}' configuration.`);
 };
 class EosValidator {
-    isAcceptable({ name, nodes }) {
+    isAcceptable({ name, nodes, urlOrigin }) {
         if (!Blockchain.eos.find(preset => name === preset))
             return false;
         if (!nodes) {
