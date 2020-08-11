@@ -108,6 +108,7 @@ class Keycat {
   }
 
   get keycatOrigin(): string {
+    console.log('this.config is: ', this.config)
     const {
       __keycatOrigin,
       blockchain: { name, urlOrigin },
