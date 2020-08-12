@@ -110,10 +110,10 @@ class Keycat {
   get keycatOrigin(): string {
     const {
       __keycatOrigin,
-      blockchain: { name, urlOrigin },
+      blockchain: { name, origin },
     } = this.config
 
-    return urlOrigin
+    return origin
   }
 
   public account(accountName: string) {
