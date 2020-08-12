@@ -86,6 +86,7 @@ var Keycat = /** @class */ (function () {
     };
     Object.defineProperty(Keycat.prototype, "keycatOrigin", {
         get: function () {
+            console.log('getting keycatOrigin, this.config is: ', this.config);
             var _a = this.config, __keycatOrigin = _a.__keycatOrigin, _b = _a.blockchain, name = _b.name, origin = _b.origin;
             return origin;
         },

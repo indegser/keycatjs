@@ -68,6 +68,7 @@ class Keycat {
         };
     }
     get keycatOrigin() {
+        console.log('getting keycatOrigin, this.config is: ', this.config);
         const { __keycatOrigin, blockchain: { name, origin }, } = this.config;
         return origin;
     }
