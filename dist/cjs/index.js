@@ -91,8 +91,8 @@ var Keycat = /** @class */ (function () {
     };
     Object.defineProperty(Keycat.prototype, "keycatOrigin", {
         get: function () {
-            var _a = this.config, __keycatOrigin = _a.__keycatOrigin, _b = _a.blockchain, name = _b.name, urlOrigin = _b.urlOrigin;
-            return urlOrigin;
+            var _a = this.config, __keycatOrigin = _a.__keycatOrigin, _b = _a.blockchain, name = _b.name, origin = _b.origin;
+            return origin;
         },
         enumerable: true,
         configurable: true
@@ -134,7 +134,7 @@ var KeycatTelos = /** @class */ (function (_super) {
         return _super.call(this, {
             blockchain: {
                 name: 'telos',
-                urlOrigin: 'https://wallet.telos.net',
+                origin: origin,
                 nodes: nodes,
             },
         }) || this;
@@ -147,7 +147,7 @@ var KeycatTelosTestnet = /** @class */ (function (_super) {
         return _super.call(this, {
             blockchain: {
                 name: 'telos-testnet',
-                urlOrigin: 'http://localhost:3030',
+                origin: 'http://localhost:3030',
                 nodes: nodes,
             },
         }) || this;

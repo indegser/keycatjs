@@ -4,12 +4,12 @@ declare type IEos = {
     name: typeof Blockchain.eos[number];
     nodes: string[];
     plugin?: never;
-    urlOrigin: string;
+    origin: string;
 } | {
     name: string;
     plugin: 'eos';
     nodes: string[];
-    urlOrigin: string;
+    origin: string;
 };
 declare type TBlockchain = IEos;
 interface IKeycatConfig {

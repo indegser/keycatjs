@@ -9,13 +9,13 @@ type IEos =
       name: typeof Blockchain.eos[number]
       nodes: string[]
       plugin?: never
-      urlOrigin: string
+      origin: string
     }
   | {
       name: string
       plugin: 'eos'
       nodes: string[]
-      urlOrigin: string
+      origin: string
     }
 
 type TBlockchain = IEos
@@ -149,7 +149,7 @@ class KeycatTelos extends Keycat {
     super({
       blockchain: {
         name: 'telos',
-        urlOrigin: 'https://wallet.telos.net',
+        origin,
         nodes,
       },
     })
@@ -161,7 +161,7 @@ class KeycatTelosTestnet extends Keycat {
     super({
       blockchain: {
         name: 'telos-testnet',
-        urlOrigin: 'http://localhost:3030',
+        origin: 'http://localhost:3030',
         nodes,
       },
     })

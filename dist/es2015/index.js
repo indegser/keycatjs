@@ -68,8 +68,8 @@ class Keycat {
         };
     }
     get keycatOrigin() {
-        const { __keycatOrigin, blockchain: { name, urlOrigin }, } = this.config;
-        return urlOrigin;
+        const { __keycatOrigin, blockchain: { name, origin }, } = this.config;
+        return origin;
     }
     account(accountName) {
         this._account = accountName;
@@ -97,7 +97,7 @@ class KeycatTelos extends Keycat {
         super({
             blockchain: {
                 name: 'telos',
-                urlOrigin: 'https://wallet.telos.net',
+                origin,
                 nodes,
             },
         });
@@ -108,7 +108,7 @@ class KeycatTelosTestnet extends Keycat {
         super({
             blockchain: {
                 name: 'telos-testnet',
-                urlOrigin: 'http://localhost:3030',
+                origin: 'http://localhost:3030',
                 nodes,
             },
         });
