@@ -6,17 +6,17 @@ import { openWindow, makeWindowUrl } from './utils/window'
 
 type IEos =
   | {
-      name: typeof Blockchain.eos[number]
-      nodes: string[]
-      plugin?: never
-      origin: string
-    }
+    name: typeof Blockchain.eos[number]
+    nodes: string[]
+    plugin?: never
+    origin: string
+  }
   | {
-      name: string
-      plugin: 'eos'
-      nodes: string[]
-      origin: string
-    }
+    name: string
+    plugin: 'eos'
+    nodes: string[]
+    origin: string
+  }
 
 type TBlockchain = IEos
 

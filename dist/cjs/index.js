@@ -16,6 +16,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Keycat = void 0;
 var Deferred_1 = require("./Deferred");
 var Blockchain_1 = require("./Blockchain");
 var Validator_1 = __importDefault(require("./Validator"));
@@ -95,7 +96,7 @@ var Keycat = /** @class */ (function () {
             var _a = this.config, __keycatOrigin = _a.__keycatOrigin, _b = _a.blockchain, name = _b.name, origin = _b.origin;
             return origin;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Keycat.prototype.account = function (accountName) {

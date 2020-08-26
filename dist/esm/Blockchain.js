@@ -19,7 +19,7 @@ export var appendPlugin = function (blockchain) {
         var key = keys_1[_i];
         var nameSet = Blockchain[key];
         if (nameSet.find(function (n) { return n === blockchain.name; })) {
-            return __assign({}, blockchain, { plugin: key });
+            return __assign(__assign({}, blockchain), { plugin: key });
         }
     }
     var plugin = blockchain.plugin;

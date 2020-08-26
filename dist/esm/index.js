@@ -90,7 +90,7 @@ var Keycat = /** @class */ (function () {
             var _a = this.config, __keycatOrigin = _a.__keycatOrigin, _b = _a.blockchain, name = _b.name, origin = _b.origin;
             return origin;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Keycat.prototype.account = function (accountName) {

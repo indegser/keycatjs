@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.makeWindowUrl = exports.openWindow = void 0;
 function openWindow(url, mode) {
     if (mode === 'page') {
         return window.open(url, '_blank');

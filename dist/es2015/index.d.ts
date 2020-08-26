@@ -29,7 +29,7 @@ declare class Keycat {
     private spawnWindow;
     private sendResponse;
     private makeUrlData;
-    readonly keycatOrigin: string;
+    get keycatOrigin(): string;
     account(accountName: string): this;
     signin(): Promise<ISigninResponse>;
     transact(...args: any[]): Promise<any>;

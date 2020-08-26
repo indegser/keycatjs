@@ -7,7 +7,7 @@ export const appendPlugin = blockchain => {
     for (const key of keys) {
         const nameSet = Blockchain[key];
         if (nameSet.find(n => n === blockchain.name)) {
-            return Object.assign({}, blockchain, { plugin: key });
+            return Object.assign(Object.assign({}, blockchain), { plugin: key });
         }
     }
     const { plugin } = blockchain;

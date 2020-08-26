@@ -2,7 +2,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
     typeof define === 'function' && define.amd ? define(['exports'], factory) :
     (global = global || self, factory(global.keycatjs = {}));
-}(this, function (exports) { 'use strict';
+}(this, (function (exports) { 'use strict';
 
     var Deferred = /** @class */ (function () {
         function Deferred() {
@@ -38,7 +38,7 @@
             var key = keys_1[_i];
             var nameSet = Blockchain[key];
             if (nameSet.find(function (n) { return n === blockchain.name; })) {
-                return __assign({}, blockchain, { plugin: key });
+                return __assign(__assign({}, blockchain), { plugin: key });
             }
         }
         var plugin = blockchain.plugin;
@@ -184,7 +184,7 @@
                 var _a = this.config, __keycatOrigin = _a.__keycatOrigin, _b = _a.blockchain, name = _b.name, origin = _b.origin;
                 return origin;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Keycat.prototype.account = function (accountName) {
@@ -250,5 +250,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=keycatjs.development.js.map
