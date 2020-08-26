@@ -165,7 +165,7 @@ class KeycatTelosTestnet extends Keycat {
     super({
       blockchain: {
         name: 'telos-testnet',
-        origin: 'http://localhost:3030',
+        origin,
         nodes,
       },
     })
