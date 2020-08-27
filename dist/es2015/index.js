@@ -70,7 +70,7 @@ class Keycat {
     }
     get keycatOrigin() {
         console.log('getting keycatOrigin, this.config is: ', this.config);
-        const { __keycatOrigin, blockchain: { name, origin }, } = this.config;
+        const { blockchain: { origin }, } = this.config;
         return origin;
     }
     account(accountName) {
@@ -95,8 +95,7 @@ class Keycat {
     }
 }
 class KeycatTelos extends Keycat {
-    constructor(nodes) {
-        console.log('in KeycatTelos constructor');
+    constructor(nodes, origin) {
         super({
             blockchain: {
                 name: 'telos',
@@ -107,12 +106,11 @@ class KeycatTelos extends Keycat {
     }
 }
 class KeycatTelosTestnet extends Keycat {
-    constructor(nodes) {
-        console.log('in KeycatTelosTestnet constructor');
+    constructor(nodes, origin) {
         super({
             blockchain: {
                 name: 'telos-testnet',
-                origin: 'http://localhost:3030',
+                origin,
                 nodes,
             },
         });

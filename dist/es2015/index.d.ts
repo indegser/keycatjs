@@ -38,9 +38,9 @@ declare class Keycat {
     sign: (...args: any[]) => Promise<any>;
 }
 declare class KeycatTelos extends Keycat {
-    constructor(nodes: any);
+    constructor(nodes: any, origin: any);
 }
 declare class KeycatTelosTestnet extends Keycat {
-    constructor(nodes: any);
+    constructor(nodes: any, origin: any);
 }
 export { Keycat };
