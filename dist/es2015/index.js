@@ -70,8 +70,19 @@ class Keycat {
     }
     get keycatOrigin() {
         console.log('getting keycatOrigin, this.config is: ', this.config);
-        const { blockchain: { origin }, } = this.config;
-        return origin;
+        const { blockchain: { origin, name }, } = this.config;
+        let telosOrigin;
+        if (name === 'telos') {
+            telosOrigin = 'https://sign.telos.net';
+        }
+        else if (name === 'telos-testnet') {
+            telosOrigin = 'https://sign-dev.telos.net';
+        }
+        else {
+            throw new Error(`Unknown network ${name}`);
+        }
+        const url = new URL(origin || telosOrigin);
+        return url.origin;
     }
     account(accountName) {
         this._account = accountName;
