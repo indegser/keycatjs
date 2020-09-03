@@ -111,10 +111,18 @@ class Keycat {
   get keycatOrigin(): string {
     console.log('getting keycatOrigin, this.config is: ', this.config)
     const {
-      blockchain: { origin },
+      blockchain: { origin, name },
     } = this.config
-
-    return origin
+    let telosOrigin
+    if (name === 'telos') {
+      telosOrigin = 'https://sign.telos.net'
+    } else if (name === 'telos-testnet') {
+      telosOrigin = 'https://sign-dev.telos.net'
+    } else {
+      throw new Error(`Unknown network ${name}`)
+    }
+    const url = new URL(origin || telosOrigin)
+    return url.origin
   }
 
   public account(accountName: string) {
