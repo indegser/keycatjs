@@ -4,12 +4,12 @@ declare type IEos = {
     name: typeof Blockchain.eos[number];
     nodes: string[];
     plugin?: never;
-    urlOrigin: string;
+    origin: string;
 } | {
     name: string;
     plugin: 'eos';
     nodes: string[];
-    urlOrigin: string;
+    origin: string;
 };
 declare type TBlockchain = IEos;
 interface IKeycatConfig {
@@ -29,7 +29,7 @@ declare class Keycat {
     private spawnWindow;
     private sendResponse;
     private makeUrlData;
-    readonly keycatOrigin: string;
+    get keycatOrigin(): string;
     account(accountName: string): this;
     signin(): Promise<ISigninResponse>;
     transact(...args: any[]): Promise<any>;

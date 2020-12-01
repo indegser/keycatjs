@@ -1,4 +1,3 @@
-
 const eos = ['telos', 'telos-testnet'] as const
 
 const Blockchain = {
