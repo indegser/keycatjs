@@ -11,35 +11,20 @@ const throwValidationError = ({ name, property, blockchain }) => {
 }
 
 class EosValidator implements IBlockchainValidator {
-  public isAcceptable({ name, nodes }) {
+  public isAcceptable({ name, nodes, urlOrigin }) {
+    console.log('about to validate isAcceptable', name, nodes, urlOrigin)
     if (!Blockchain.eos.find(preset => name === preset)) return false
 
     if (!nodes) {
       throwValidationError({ name, property: 'nodes', blockchain: 'eos' })
     }
-
-    return true
-  }
-}
-
-class KlaytnValidator implements IBlockchainValidator {
-  public isAcceptable({ name, rpcUrl }) {
-    if (!Blockchain.klaytn.find(preset => name === preset)) return false
-    if (!rpcUrl) {
-      throwValidationError({
-        name,
-        property: 'rpcUrl',
-        blockchain: 'klaytn',
-      })
-    }
-
+    console.log('EosValidator true')
     return true
   }
 }
 
 const validators = {
   eos: EosValidator,
-  klaytn: KlaytnValidator,
 }
 
 export default validators

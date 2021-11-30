@@ -36,15 +36,6 @@ const bosKeycat = new Keycat.Bos([
 ### EOS Network Presets
 
 | Name | Keycat URL |
-| :--- | :--- |
-| Mainnet | eos.keycat.co |
-| Jungle | eos-jungle.keycat.co |
-| Kylin | eos-kylin.keycat.co |
-| Worbli | worbli.keycat.co |
-| Bos | bos.keycat.co |
-| Telos | telos.keycat.co |
-| Meetone | meetone.keycat.co |
-| Wax | wax.keycat.co |
-
-
-
+| :--- | :--------- ||
+| Telos        | telos.keycat.co         |
+| TelosTestnet | telos-testnet.keycat.co |         |
